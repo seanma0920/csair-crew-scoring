@@ -226,7 +226,7 @@ function setStoredAuth(token){
 }
 
 function getStoredPwHash(){
-  return localStorage.getItem(PW_STORAGE_KEY) || PW_HASH;
+  return PW_HASH;
 }
 
 // 纯 JS SHA-256（兼容微信内置浏览器等不支持 crypto.subtle 的环境）
