@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>涔樺姟涓€鍒嗛儴 路 鏈堝害鍒嗛槦鑰冩牳璇勫垎绯荤粺锛堜簯鐗堬級</title>
+<title>乘务一分部 · 月度分队考核评分系统（云版）</title>
 <style>
 :root{--primary:#1a3a6b;--primary-light:#2a5298;--primary-dark:#0f2445;--accent:#c4161c;--accent-light:#e8383e;--gold:#d4a843;--bg:#f0f2f5;--card:#fff;--text:#1a1a2e;--text2:#5a6070;--border:#d8dce5;--success:#27ae60;--warning:#f39c12;--danger:#c0392b;--shadow:0 2px 12px rgba(0,0,0,.08);--radius:8px}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
-/* ===== 瀵嗙爜閿?===== */
+/* ===== 密码锁 ===== */
 .login-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--primary-dark),var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .4s}
 .login-overlay.hidden{opacity:0;pointer-events:none}
 .login-box{background:var(--card);border-radius:12px;padding:36px 32px;width:360px;max-width:90vw;box-shadow:0 8px 40px rgba(0,0,0,.25);text-align:center}
@@ -23,7 +23,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .change-pw-hint{margin-top:12px;font-size:11px;color:var(--text2)}
 .change-pw-hint a{color:var(--primary);cursor:pointer;text-decoration:underline}
 
-/* ===== 涓荤晫闈?===== */
+/* ===== 主界面 ===== */
 .header{background:linear-gradient(135deg,var(--primary-dark),var(--primary),var(--primary-light));color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 20px rgba(0,0,0,.15);position:sticky;top:0;z-index:100}
 .header-left{display:flex;align-items:center;gap:14px}
 .header-logo{width:44px;height:44px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.3)}
@@ -125,87 +125,87 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 </head>
 <body>
 
-<!-- ===== 瀵嗙爜閿?===== -->
+<!-- ===== 密码锁 ===== -->
 <div class="login-overlay" id="loginOverlay">
 <div class="login-box">
-<div class="icon">馃攼</div>
-<h2>涔樺姟涓€鍒嗛儴鑰冩牳绯荤粺</h2>
-<p>浜戠増 路 璇疯緭鍏ヨ闂瘑鐮?/p>
-<input type="password" id="loginPw" placeholder="璇疯緭鍏ュ瘑鐮? autofocus>
-<button class="btn btn-primary" id="loginBtn" onclick="doLogin()">杩涘叆绯荤粺</button>
+<div class="icon">🔐</div>
+<h2>乘务一分部考核系统</h2>
+<p>云版 · 请输入访问密码</p>
+<input type="password" id="loginPw" placeholder="请输入密码" autofocus>
+<button class="btn btn-primary" id="loginBtn" onclick="doLogin()">进入系统</button>
 <div class="login-error" id="loginError"></div>
 </div>
 </div>
 
-<!-- ===== 涓荤晫闈?===== -->
+<!-- ===== 主界面 ===== -->
 <div class="header">
 <div class="header-left">
-<div class="header-logo">鍗?/div>
+<div class="header-logo">南</div>
 <div class="header-title">
-<h1>涔樺姟涓€鍒嗛儴 路 鏈堝害鍒嗛槦鑰冩牳璇勫垎绯荤粺</h1>
-<p>涓浗鍗楁柟鑸┖鍚夋灄鍒嗗叕鍙稿鑸遍儴 路 2026R5鐗?路 浜戠増 路 璧峰鍒?00+鍔犲噺鍒?/p>
+<h1>乘务一分部 · 月度分队考核评分系统</h1>
+<p>中国南方航空吉林分公司客舱部 · 2026R5版 · 云版 · 起始分100+加减分</p>
 </div>
 </div>
 <div class="header-right">
-<span class="header-badge cloud" id="syncStatus"><span class="sync-dot online" id="syncDot"></span><span id="syncLabel">浜戝悓姝?/span></span>
-<span class="header-badge" id="dataInfo">鍔犺浇涓?..</span>
+<span class="header-badge cloud" id="syncStatus"><span class="sync-dot online" id="syncDot"></span><span id="syncLabel">云同步</span></span>
+<span class="header-badge" id="dataInfo">加载中...</span>
 </div>
 </div>
 <div class="nav-tabs">
-<div class="nav-tab active" data-page="scoring">馃摑 鏈堝害璇勫垎</div>
-<div class="nav-tab" data-page="monthly">馃搳 鏈堝害璇︽儏</div>
-<div class="nav-tab" data-page="cumulative">馃搱 绱杩借釜</div>
-<div class="nav-tab" data-page="annual">馃弳 骞村害姹囨€?/div>
+<div class="nav-tab active" data-page="scoring">📝 月度评分</div>
+<div class="nav-tab" data-page="monthly">📊 月度详情</div>
+<div class="nav-tab" data-page="cumulative">📈 累计追踪</div>
+<div class="nav-tab" data-page="annual">🏆 年度汇总</div>
 </div>
 <div class="main">
 <!-- SCORING PAGE -->
 <div class="page active" id="page-scoring">
 <div class="selector-row">
-<label>鑰冩牳骞村害</label><select id="sYear"></select>
-<label>鑰冩牳鏈堜唤</label><select id="sMonth"><option value="1">1鏈?/option><option value="2">2鏈?/option><option value="3">3鏈?/option><option value="4">4鏈?/option><option value="5">5鏈?/option><option value="6">6鏈?/option><option value="7">7鏈?/option><option value="8">8鏈?/option><option value="9">9鏈?/option><option value="10">10鏈?/option><option value="11">11鏈?/option><option value="12">12鏈?/option></select>
-<button class="btn btn-primary" onclick="loadScoring()">鍔犺浇璇勫垎琛?/button>
-<button class="btn btn-accent" onclick="saveScores()">馃捑 淇濆瓨</button>
-<button class="btn btn-outline" onclick="exportMonth()">馃摛 瀵煎嚭</button>
-<button class="btn btn-danger" onclick="clearMonth()">馃棏锔?娓呯┖鏈湀</button>
+<label>考核年度</label><select id="sYear"></select>
+<label>考核月份</label><select id="sMonth"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select>
+<button class="btn btn-primary" onclick="loadScoring()">加载评分表</button>
+<button class="btn btn-accent" onclick="saveScores()">💾 保存</button>
+<button class="btn btn-outline" onclick="exportMonth()">📤 导出</button>
+<button class="btn btn-danger" onclick="clearMonth()">🗑️ 清空本月</button>
 </div>
-<div id="scoringArea"><div class="empty-state"><div class="icon">馃搵</div><p>閫夋嫨鑰冩牳骞存湀鍚庣偣鍑汇€屽姞杞借瘎鍒嗚〃銆?/p></div></div>
+<div id="scoringArea"><div class="empty-state"><div class="icon">📋</div><p>选择考核年月后点击「加载评分表」</p></div></div>
 </div>
 <!-- MONTHLY DETAIL -->
 <div class="page" id="page-monthly">
 <div class="selector-row">
-<label>鏌ョ湅骞村害</label><select id="dYear"></select>
-<button class="btn btn-primary" onclick="loadDetail()">鏌ョ湅璇︽儏</button>
+<label>查看年度</label><select id="dYear"></select>
+<button class="btn btn-primary" onclick="loadDetail()">查看详情</button>
 </div>
-<div id="detailArea"><div class="empty-state"><div class="icon">馃搳</div><p>閫夋嫨骞村害鏌ョ湅鍚勬湀鑰冩牳璇︽儏</p></div></div>
+<div id="detailArea"><div class="empty-state"><div class="icon">📊</div><p>选择年度查看各月考核详情</p></div></div>
 </div>
 <!-- CUMULATIVE -->
 <div class="page" id="page-cumulative">
 <div class="selector-row">
-<label>缁熻骞村害</label><select id="cYear"></select>
-<button class="btn btn-primary" onclick="loadCumul()">鏌ョ湅绱</button>
-<button class="btn btn-outline" onclick="exportCumul()">馃摛 瀵煎嚭</button>
+<label>统计年度</label><select id="cYear"></select>
+<button class="btn btn-primary" onclick="loadCumul()">查看累计</button>
+<button class="btn btn-outline" onclick="exportCumul()">📤 导出</button>
 </div>
-<div id="cumulArea"><div class="empty-state"><div class="icon">馃搱</div><p>姝ｅ湪鍔犺浇绱鏁版嵁鈥?/p></div></div>
+<div id="cumulArea"><div class="empty-state"><div class="icon">📈</div><p>正在加载累计数据…</p></div></div>
 </div>
 <!-- ANNUAL -->
 <div class="page" id="page-annual">
 <div class="selector-row">
-<label>姹囨€诲勾搴?/label><select id="aYear"></select>
-<button class="btn btn-primary" onclick="loadAnnual()">鐢熸垚骞村害姹囨€?/button>
-<button class="btn btn-outline" onclick="exportAnnual()">馃摛 瀵煎嚭鎶ュ憡</button>
+<label>汇总年度</label><select id="aYear"></select>
+<button class="btn btn-primary" onclick="loadAnnual()">生成年度汇总</button>
+<button class="btn btn-outline" onclick="exportAnnual()">📤 导出报告</button>
 </div>
-<div id="annualArea"><div class="empty-state"><div class="icon">馃弳</div><p>鐢熸垚鍒嗛槦骞村害鑰冩牳鎺掑悕姹囨€?/p></div></div>
+<div id="annualArea"><div class="empty-state"><div class="icon">🏆</div><p>生成分队年度考核排名汇总</p></div></div>
 </div>
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
-// ===== Supabase 閰嶇疆 =====
+// ===== Supabase 配置 =====
 const SB_URL = 'https://mohmfkkhlqsprvgdsgcm.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1vaG1ma2tobHFzcHJ2Z2RzZ2NtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzMjkzMzYsImV4cCI6MjA5NDkwNTMzNn0.a9ts68375fBuxJe-Txbi275mhulK0KuHaqsb_Syy0Y4';
 const PW_HASH = '6635ecb7d537df6a9e2edaf82aeabe89fdbe8741e653387f64ecb14b5312e912'; // SHA-256 of default password
 
-// ===== 瀵嗙爜绠＄悊 =====
+// ===== 密码管理 =====
 const AUTH_KEY = 'cabin_cloud_auth_v1';
 const PW_STORAGE_KEY = 'cabin_cloud_pw_v1';
 
@@ -216,7 +216,7 @@ function getStoredAuth(){
     const raw = localStorage.getItem(AUTH_KEY);
     if(!raw) return null;
     const d = JSON.parse(raw);
-    if(Date.now() - d.ts > 86400000) return null; // 24h杩囨湡
+    if(Date.now() - d.ts > 86400000) return null; // 24h过期
     return d.token;
   } catch { return null; }
 }
@@ -240,10 +240,10 @@ async function doLogin(){
   const pw = document.getElementById('loginPw').value;
   const errEl = document.getElementById('loginError');
   const btn = document.getElementById('loginBtn');
-  if(!pw){ errEl.textContent = '璇疯緭鍏ュ瘑鐮?; return; }
+  if(!pw){ errEl.textContent = '请输入密码'; return; }
   
   btn.disabled = true;
-  btn.textContent = '楠岃瘉涓?..';
+  btn.textContent = '验证中...';
   
   const inputHash = await sha256(pw);
   const storedHash = getStoredPwHash();
@@ -255,15 +255,15 @@ async function doLogin(){
     document.getElementById('loginError').textContent = '';
     bootApp();
   } else {
-    errEl.textContent = '瀵嗙爜閿欒锛岃閲嶈瘯';
+    errEl.textContent = '密码错误，请重试';
     document.getElementById('loginPw').value = '';
     document.getElementById('loginPw').focus();
   }
   btn.disabled = false;
-  btn.textContent = '杩涘叆绯荤粺';
+  btn.textContent = '进入系统';
 }
 
-// 鍥炶溅鐧诲綍
+// 回车登录
 document.addEventListener('keydown', function(e){
   if(!authToken && e.key==='Enter'){
     document.getElementById('loginPw').focus();
@@ -290,20 +290,21 @@ async function sbFetch(path, options = {}){
   return res.json();
 }
 
-// 鎷夊彇鏌愭湀鍏ㄩ儴鏁版嵁
+// 拉取某月全部数据
 async function fetchMonthRows(y, m){
   const ym = k(y, m);
   const rows = await sbFetch(`scoring?year_month=eq.${ym}&select=*&limit=500`);
   return rows || [];
 }
 
-// 鎷夊彇鍏ㄥ勾鏁版嵁
+// 拉取全年数据
 async function fetchYearRows(y){
   const rows = await sbFetch(`scoring?year_month=like.${y}-*&select=*&limit=5000`);
   return rows || [];
 }
 
-// 鎵归噺 upsert 琛?async function upsertRows(rows){
+// 批量 upsert 行
+async function upsertRows(rows){
   if(!rows || rows.length === 0) return;
   const res = await sbFetch('scoring', {
     method: 'POST',
@@ -313,13 +314,13 @@ async function fetchYearRows(y){
   return res;
 }
 
-// 鍒犻櫎鏌愭湀鍏ㄩ儴鏁版嵁
+// 删除某月全部数据
 async function deleteMonthRows(y, m){
   const ym = k(y, m);
   await sbFetch(`scoring?year_month=eq.${ym}`, { method: 'DELETE' });
 }
 
-// ===== 鏁版嵁灞傦細鍐呭瓨缂撳瓨 =====
+// ===== 数据层：内存缓存 =====
 let _cache = {}; // { "2026-04": { "0_s08": {score,note}, ... } }
 let _cacheLoaded = {}; // { "2026-04": true }
 
@@ -332,16 +333,18 @@ async function ensureMonth(y,m){
   setSync('syncing');
   const rows = await fetchMonthRows(y,m);
   if(rows.length > 0){
-    // 宸叉湁鏁版嵁锛屽姞杞?    const md = {};
+    // 已有数据，加载
+    const md = {};
     rows.forEach(r => { md[`${r.team_index}_${r.item_id}`] = {score: r.score, note: r.note || ''}; });
-    // 纭繚鎵€鏈?item 閮芥湁鏉＄洰
+    // 确保所有 item 都有条目
     TEAMS.forEach((_,ti) => ALL_ITEMS.forEach(it => {
       const pk = `${ti}_${it.id}`;
       if(!md[pk]) md[pk] = {score: 0, note: ''};
     }));
     _cache[key] = md;
   } else {
-    // 娌℃湁鏁版嵁锛氭鏌ユ湁鏃犻缃暟鎹?    const md = {};
+    // 没有数据：检查有无预置数据
+    const md = {};
     TEAMS.forEach((_,ti) => ALL_ITEMS.forEach(it => {
       const pk = `${ti}_${it.id}`;
       if(PRESET_DATA[key] && PRESET_DATA[key][pk]){
@@ -352,7 +355,7 @@ async function ensureMonth(y,m){
     }));
     _cache[key] = md;
     
-    // 濡傛湁棰勭疆鏁版嵁锛屽啓鍏?Supabase
+    // 如有预置数据，写入 Supabase
     if(PRESET_DATA[key]){
       const toUpsert = [];
       TEAMS.forEach((_,ti) => ALL_ITEMS.forEach(it => {
@@ -372,30 +375,30 @@ async function ensureMonth(y,m){
   return _cache[key];
 }
 
-// 绔嬪嵆鍚屾鍗曚釜鍗曞厓鏍煎埌 Supabase
+// 立即同步单个单元格到 Supabase
 async function syncCell(ti, itemId, y, m, score, note){
   const ym = k(y,m);
-  // 鏇存柊鍐呭瓨缂撳瓨
+  // 更新内存缓存
   if(!_cache[ym]) _cache[ym] = {};
   _cache[ym][`${ti}_${itemId}`] = {score, note};
   
-  // 鍐欏叆 Supabase
+  // 写入 Supabase
   try {
     setSync('syncing');
     await upsertRows([{ team_index: ti, year_month: ym, item_id: itemId, score, note }]);
     setSync('online');
   } catch(e){
     setSync('offline');
-    console.error('鍚屾澶辫触:', e);
-    showToast('鈿狅笍 浜戠鍚屾澶辫触锛屾暟鎹凡鏆傚瓨鏈湴');
-    // 鏆傚瓨鍒?localStorage 浣滀负澶囦唤
+    console.error('同步失败:', e);
+    showToast('⚠️ 云端同步失败，数据已暂存本地');
+    // 暂存到 localStorage 作为备份
     const backup = JSON.parse(localStorage.getItem('cabin_backup')||'{}');
     backup[`${ym}_${ti}_${itemId}`] = {score, note, ts: Date.now()};
     localStorage.setItem('cabin_backup', JSON.stringify(backup));
   }
 }
 
-// 鎵归噺鍚屾鏁存湀鏁版嵁
+// 批量同步整月数据
 async function syncMonth(y, m){
   const key = k(y,m);
   const md = _cache[key];
@@ -416,7 +419,7 @@ async function syncMonth(y, m){
     return true;
   } catch(e){
     setSync('offline');
-    console.error('鎵归噺鍚屾澶辫触:', e);
+    console.error('批量同步失败:', e);
     return false;
   }
 }
@@ -425,111 +428,111 @@ function setSync(state){
   const dot = document.getElementById('syncDot');
   const label = document.getElementById('syncLabel');
   dot.className = 'sync-dot ' + state;
-  if(state==='online') label.textContent = '浜戝悓姝?;
-  else if(state==='syncing') label.textContent = '鍚屾涓?..';
-  else label.textContent = '绂荤嚎';
+  if(state==='online') label.textContent = '云同步';
+  else if(state==='syncing') label.textContent = '同步中...';
+  else label.textContent = '离线';
 }
 
 function updateInfo(){
   const loaded = Object.keys(_cacheLoaded).length;
-  document.getElementById('dataInfo').textContent = loaded ? `鈽侊笍 宸插姞杞?${loaded} 涓湀` : '鏆傛棤鏁版嵁';
+  document.getElementById('dataInfo').textContent = loaded ? `☁️ 已加载 ${loaded} 个月` : '暂无数据';
 }
 
 // ===== CONFIG =====
-const TEAMS = ['涓€鍒嗛槦','浜屽垎闃?,'涓夊垎闃?,'鍥涘垎闃?];
+const TEAMS = ['一分队','二分队','三分队','四分队'];
 const TEAM_TH = ['team-th-1','team-th-2','team-th-3','team-th-4'];
 const TEAM_YC = ['t1','t2','t3','t4'];
 
 const CATS = [
-{name:'1.瀹夊叏', items:[
-{id:'s01',num:'1.1',name:'鍙戠敓璐ｄ换鍘熷洜閫犳垚鐨勪簩绫讳簨浠讹紙鍚級浠ヤ笂涓嶅畨鍏ㄤ簨浠?,rule:'姣忎汉娆?30鍒?,ctrl:{type:'step',unit:'浜烘',delta:-30}},
-{id:'s02',num:'1.2',name:'鍙戠敓璐ｄ换鍘熷洜閫犳垚鐨勪笁绫讳簨浠?,rule:'姣忎汉娆?15鍒?,ctrl:{type:'step',unit:'浜烘',delta:-15}},
-{id:'s03',num:'1.3',name:'鍙戠敓璐ｄ换鍘熷洜鐨勭┖闃插畨鍏ㄤ簨浠?,rule:'姣忎汉娆?10鍒?,ctrl:{type:'step',unit:'浜烘',delta:-10}},
-{id:'s04',num:'1.4',name:'鍙戠敓涓€鑸笉瀹夊叏浜嬩欢',rule:'姣忎汉娆?10鍒?,ctrl:{type:'step',unit:'浜烘',delta:-10}},
-{id:'s05',num:'1.5',name:'鍙戠敓瀹夊叏闆跺蹇嶄簨浠?,rule:'姣忎汉娆?8鍒?,ctrl:{type:'step',unit:'浜烘',delta:-8}},
-{id:'s06',num:'1.6',name:'瀹夊叏宸ヤ綔鍋氬嚭绐佸嚭璐＄尞',rule:'姣忎汉娆?10鍒?,ctrl:{type:'step',unit:'浜烘',delta:10}},
-{id:'s07',num:'1.7',name:'瀹夊叏宸ヤ綔寰楀埌灞€鏂?闆嗗洟/鑲′唤琛ㄦ壃',rule:'姣忎汉娆?3鍒?,ctrl:{type:'step',unit:'浜烘',delta:3}},
-{id:'s08',num:'1.8',name:'瀹夊叏宸ヤ綔寰楀埌鍒嗗叕鍙?瀹㈣埍閮ㄨ〃鎵?,rule:'姣忎汉娆?2鍒?,ctrl:{type:'step',unit:'浜烘',delta:2}},
-{id:'s09',num:'1.9',name:'瀹夊叏宸ヤ綔寰楀埌鍒嗛儴琛ㄦ壃',rule:'姣忎汉娆?1鍒?,ctrl:{type:'step',unit:'浜烘',delta:1}},
-{id:'s10',num:'1.10',name:'瀹夊叏鏃犱簨浠?,rule:'鍒嗛槦+5鍒?,ctrl:{type:'toggle',score:5}},
+{name:'1.安全', items:[
+{id:'s01',num:'1.1',name:'发生责任原因造成的二类事件（含）以上不安全事件',rule:'每人次-30分',ctrl:{type:'step',unit:'人次',delta:-30}},
+{id:'s02',num:'1.2',name:'发生责任原因造成的三类事件',rule:'每人次-15分',ctrl:{type:'step',unit:'人次',delta:-15}},
+{id:'s03',num:'1.3',name:'发生责任原因的空防安全事件',rule:'每人次-10分',ctrl:{type:'step',unit:'人次',delta:-10}},
+{id:'s04',num:'1.4',name:'发生一般不安全事件',rule:'每人次-10分',ctrl:{type:'step',unit:'人次',delta:-10}},
+{id:'s05',num:'1.5',name:'发生安全零容忍事件',rule:'每人次-8分',ctrl:{type:'step',unit:'人次',delta:-8}},
+{id:'s06',num:'1.6',name:'安全工作做出突出贡献',rule:'每人次+10分',ctrl:{type:'step',unit:'人次',delta:10}},
+{id:'s07',num:'1.7',name:'安全工作得到局方/集团/股份表扬',rule:'每人次+3分',ctrl:{type:'step',unit:'人次',delta:3}},
+{id:'s08',num:'1.8',name:'安全工作得到分公司/客舱部表扬',rule:'每人次+2分',ctrl:{type:'step',unit:'人次',delta:2}},
+{id:'s09',num:'1.9',name:'安全工作得到分部表扬',rule:'每人次+1分',ctrl:{type:'step',unit:'人次',delta:1}},
+{id:'s10',num:'1.10',name:'安全无事件',rule:'分队+5分',ctrl:{type:'toggle',score:5}},
 ]},
-{name:'2.鏈嶅姟', items:[
-{id:'f01',num:'2.1',name:'鍙戠敓鏈嶅姟閲嶅ぇ鏈夎矗鎭舵€ф姇璇?閲嶅ぇ鏈夎矗鑸嗘儏绛夎礋闈簨浠?,rule:'姣忎汉娆?30鍒?,ctrl:{type:'step',unit:'浜烘',delta:-30}},
-{id:'f02',num:'2.2',name:'姘戣埅灞€瀹㈣埍鏈嶅姟绫绘湁璐ｆ姇璇夛紙涓昏璐ｄ换浜猴級',rule:'姣忎汉娆?15鍒?,ctrl:{type:'step',unit:'浜烘',delta:-15}},
-{id:'f03',num:'2.3',name:'姘戣埅灞€瀹㈣埍鏈嶅姟绫绘湁璐ｆ姇璇夛紙绠＄悊璐ｄ换浜猴級',rule:'姣忎汉娆?10鍒?,ctrl:{type:'step',unit:'浜烘',delta:-10}},
-{id:'f04',num:'2.4',name:'瀹㈡€€涓績瀹㈣埍鏈嶅姟绫绘湁璐ｆ姇璇夛紙涓昏璐ｄ换浜猴級',rule:'姣忎汉娆?10鍒?,ctrl:{type:'step',unit:'浜烘',delta:-10}},
-{id:'f05',num:'2.5',name:'瀹㈡€€涓績瀹㈣埍鏈嶅姟绫绘湁璐ｆ姇璇夛紙绠＄悊璐ｄ换浜猴級',rule:'姣忎汉娆?5鍒?,ctrl:{type:'step',unit:'浜烘',delta:-5}},
-{id:'f06',num:'2.6',name:'鎵ц鏈ㄦ涓婚/瀹氬埗/鏀挎不浠诲姟/涓婚鑸彮绛夌壒鑹茶埅鐝?,rule:'姣忎汉娆?0.3鍒?,ctrl:{type:'step',unit:'浜烘',delta:0.3}},
-{id:'f07',num:'2.7',name:'鏈嶅姟宸ヤ綔寰楀埌灞€鏂?闆嗗洟/鑲′唤琛ㄦ壃',rule:'姣忎汉娆?3鍒?,ctrl:{type:'step',unit:'浜烘',delta:3}},
-{id:'f08',num:'2.8',name:'鏈嶅姟宸ヤ綔寰楀埌鍒嗗叕鍙?瀹㈣埍閮ㄨ〃鎵?,rule:'姣忎汉娆?2鍒?,ctrl:{type:'step',unit:'浜烘',delta:2}},
-{id:'f09',num:'2.9',name:'鏈嶅姟宸ヤ綔寰楀埌鍒嗛儴琛ㄦ壃',rule:'姣忎汉娆?1鍒?,ctrl:{type:'step',unit:'浜烘',delta:1}},
-{id:'f10',num:'2.10',name:'涔樺姟闀挎病鎸夋椂瀹屾垚鏈轰笂璇勪环',rule:'姣忎汉娆?2鍒?,ctrl:{type:'step',unit:'浜烘',delta:-2}},
-{id:'f11',num:'2.11',name:'涔樺姟闀挎湇鍔＄己闄峰讥琛ユ搷浣滈棶棰?,rule:'姣忎汉娆?2鍒?,ctrl:{type:'step',unit:'浜烘',delta:-2}},
-{id:'f12',num:'2.12',name:'涔樺姟闀块渚涗笟鍔￠棶棰?,rule:'姣忎汉娆?2鍒?,ctrl:{type:'step',unit:'浜烘',delta:-2}},
-{id:'f13',num:'2.13',name:'鏈堝害浠峰€煎垱閫犳暟閲忎釜浜烘湭瀹屾垚2浜?,rule:'姣忎汉娆?0.5鍒?,ctrl:{type:'step',unit:'浜烘',delta:-0.5}},
-{id:'f14',num:'2.14',name:'鍦ㄤ环鍊煎垱閫犲伐浣滀腑鍋氬嚭璐＄尞',rule:'姣忎汉娆?5鍒?,ctrl:{type:'step',unit:'浜烘',delta:5}},
+{name:'2.服务', items:[
+{id:'f01',num:'2.1',name:'发生服务重大有责恶性投诉/重大有责舆情等负面事件',rule:'每人次-30分',ctrl:{type:'step',unit:'人次',delta:-30}},
+{id:'f02',num:'2.2',name:'民航局客舱服务类有责投诉（主要责任人）',rule:'每人次-15分',ctrl:{type:'step',unit:'人次',delta:-15}},
+{id:'f03',num:'2.3',name:'民航局客舱服务类有责投诉（管理责任人）',rule:'每人次-10分',ctrl:{type:'step',unit:'人次',delta:-10}},
+{id:'f04',num:'2.4',name:'客怀中心客舱服务类有责投诉（主要责任人）',rule:'每人次-10分',ctrl:{type:'step',unit:'人次',delta:-10}},
+{id:'f05',num:'2.5',name:'客怀中心客舱服务类有责投诉（管理责任人）',rule:'每人次-5分',ctrl:{type:'step',unit:'人次',delta:-5}},
+{id:'f06',num:'2.6',name:'执行木棉主题/定制/政治任务/主题航班等特色航班',rule:'每人次+0.3分',ctrl:{type:'step',unit:'人次',delta:0.3}},
+{id:'f07',num:'2.7',name:'服务工作得到局方/集团/股份表扬',rule:'每人次+3分',ctrl:{type:'step',unit:'人次',delta:3}},
+{id:'f08',num:'2.8',name:'服务工作得到分公司/客舱部表扬',rule:'每人次+2分',ctrl:{type:'step',unit:'人次',delta:2}},
+{id:'f09',num:'2.9',name:'服务工作得到分部表扬',rule:'每人次+1分',ctrl:{type:'step',unit:'人次',delta:1}},
+{id:'f10',num:'2.10',name:'乘务长没按时完成机上评价',rule:'每人次-2分',ctrl:{type:'step',unit:'人次',delta:-2}},
+{id:'f11',num:'2.11',name:'乘务长服务缺陷弥补操作问题',rule:'每人次-2分',ctrl:{type:'step',unit:'人次',delta:-2}},
+{id:'f12',num:'2.12',name:'乘务长餐供业务问题',rule:'每人次-2分',ctrl:{type:'step',unit:'人次',delta:-2}},
+{id:'f13',num:'2.13',name:'月度价值创造数量个人未完成2人',rule:'每人次-0.5分',ctrl:{type:'step',unit:'人次',delta:-0.5}},
+{id:'f14',num:'2.14',name:'在价值创造工作中做出贡献',rule:'每人次+5分',ctrl:{type:'step',unit:'人次',delta:5}},
 ]},
-{name:'3.鍩硅', items:[
-{id:'p01',num:'3.1',name:'鍦ㄥ垎鍏徃/鑲′唤瀹㈣埍/鍩硅涓績鍩硅涓嚭鐜拌繚瑙勬儏鍐?,rule:'姣忎汉娆?30鍒?,ctrl:{type:'step',unit:'浜烘',delta:-30}},
-{id:'p02',num:'3.2',name:'鍦ㄥ鑸遍儴/鍒嗛儴鍩硅涓嚭鐜拌繚瑙勬儏鍐?,rule:'姣忎汉娆?10鍒?,ctrl:{type:'step',unit:'浜烘',delta:-10}},
-{id:'p03',num:'3.3',name:'璧勮川绫诲煿璁€冩牳涓嶉€氳繃',rule:'姣忎汉娆?15鍒?,ctrl:{type:'step',unit:'浜烘',delta:-15}},
-{id:'p04',num:'3.4',name:'璧勮川绫诲煿璁ˉ鑰冧笉閫氳繃',rule:'姣忎汉娆?30鍒?,ctrl:{type:'step',unit:'浜烘',delta:-30}},
-{id:'p05',num:'3.5',name:'鏅嬪崌鎻愬崌绫诲煿璁€冩牳涓嶉€氳繃',rule:'姣忎汉娆?10鍒?,ctrl:{type:'step',unit:'浜烘',delta:-10}},
-{id:'p06',num:'3.6',name:'鏅嬪崌鎻愬崌绫诲煿璁ˉ鑰冧笉閫氳繃',rule:'姣忎汉娆?15鍒?,ctrl:{type:'step',unit:'浜烘',delta:-15}},
-{id:'p07',num:'3.7',name:'涔樺姟鑻辫鏅嬬骇鑰冩牳(2绾?3绾?',rule:'姣忎汉娆?0.3鍒?,ctrl:{type:'step',unit:'浜烘',delta:0.3}},
-{id:'p08',num:'3.8',name:'鏈寜鏃堕槄璇绘枃浠?閫氬憡',rule:'姣忎汉娆?1鍒?,ctrl:{type:'step',unit:'浜烘',delta:-1}},
-{id:'p09',num:'3.9',name:'鏈寜鏃跺弬鍔犱笟鍔″煿璁绋嬫垨鏈寜鏃跺弬鍔犱細璁?瀹屾垚鍥炴斁',rule:'姣忎汉娆?2鍒?,ctrl:{type:'step',unit:'浜烘',delta:-2}},
-{id:'p10',num:'3.10',name:'缁勭粐绛栧垝鍒嗛槦鍒朵綔瀹屾垚鐩存挱闂?瀹夊叏闈㈠闈?寰井鐪嬬偣绛?,rule:'鍒嗛槦+10鍒?,ctrl:{type:'toggle',score:10}},
+{name:'3.培训', items:[
+{id:'p01',num:'3.1',name:'在分公司/股份客舱/培训中心培训中出现违规情况',rule:'每人次-30分',ctrl:{type:'step',unit:'人次',delta:-30}},
+{id:'p02',num:'3.2',name:'在客舱部/分部培训中出现违规情况',rule:'每人次-10分',ctrl:{type:'step',unit:'人次',delta:-10}},
+{id:'p03',num:'3.3',name:'资质类培训考核不通过',rule:'每人次-15分',ctrl:{type:'step',unit:'人次',delta:-15}},
+{id:'p04',num:'3.4',name:'资质类培训补考不通过',rule:'每人次-30分',ctrl:{type:'step',unit:'人次',delta:-30}},
+{id:'p05',num:'3.5',name:'晋升提升类培训考核不通过',rule:'每人次-10分',ctrl:{type:'step',unit:'人次',delta:-10}},
+{id:'p06',num:'3.6',name:'晋升提升类培训补考不通过',rule:'每人次-15分',ctrl:{type:'step',unit:'人次',delta:-15}},
+{id:'p07',num:'3.7',name:'乘务英语晋级考核(2级/3级)',rule:'每人次+0.3分',ctrl:{type:'step',unit:'人次',delta:0.3}},
+{id:'p08',num:'3.8',name:'未按时阅读文件/通告',rule:'每人次-1分',ctrl:{type:'step',unit:'人次',delta:-1}},
+{id:'p09',num:'3.9',name:'未按时参加业务培训课程或未按时参加会议/完成回放',rule:'每人次-2分',ctrl:{type:'step',unit:'人次',delta:-2}},
+{id:'p10',num:'3.10',name:'组织策划分队制作完成直播间/安全面对面/微微看点等',rule:'分队+10分',ctrl:{type:'toggle',score:10}},
 ]},
-{name:'4.妫€鏌?, items:[
-{id:'j01',num:'4.1',name:'灞€鏂规鏌ラ棶棰橈紙鍑虹幇閲嶅鎬ч棶棰樺弻鍊嶆墸鍒嗭級',rule:'姣忎汉娆?10鍒?,ctrl:{type:'step',unit:'浜烘',delta:-10}},
-{id:'j02',num:'4.2',name:'鑲′唤妫€鏌ラ棶棰橈紙鍑虹幇閲嶅鎬ч棶棰樺弻鍊嶆墸鍒嗭級',rule:'姣忎汉娆?8鍒?,ctrl:{type:'step',unit:'浜烘',delta:-8}},
-{id:'j03',num:'4.3',name:'鍒嗗叕鍙稿眰绾ф鏌ラ棶棰橈紙鍑虹幇閲嶅鎬ч棶棰樺弻鍊嶆墸鍒嗭級',rule:'姣忎汉娆?5鍒?,ctrl:{type:'step',unit:'浜烘',delta:-5}},
-{id:'j04',num:'4.4',name:'瀹㈣埍閮ㄦ鏌ラ棶棰橈紙鍑虹幇閲嶅鎬ч棶棰樺弻鍊嶆墸鍒嗭級',rule:'姣忎汉娆?5鍒?,ctrl:{type:'step',unit:'浜烘',delta:-5}},
-{id:'j05',num:'4.5',name:'涔樺姟鏃ュ織/浜岀淮鐮佸弽棣堥棶棰橈紙绱鑰冩牳锛?,rule:'姣忎汉娆?3/-5/-10鍒?,ctrl:{type:'input'}},
-{id:'j06',num:'4.6',name:'鍒嗛儴鏃╁嚭娓?鑸嚎/椹诲妫€鏌ラ棶棰橈紙鍑虹幇閲嶅鎬ч棶棰樺弻鍊嶆墸鍒嗭級',rule:'姣忎汉娆?3鍒?,ctrl:{type:'step',unit:'浜烘',delta:-3}},
-{id:'j07',num:'4.7',name:'妫€鏌ヨ繃绋嬩腑寰楀埌灞€鏂?闆嗗洟/鑲′唤琛ㄦ壃',rule:'姣忎汉娆?3鍒?,ctrl:{type:'step',unit:'浜烘',delta:3}},
-{id:'j08',num:'4.8',name:'妫€鏌ヨ繃绋嬩腑寰楀埌鍒嗗叕鍙?瀹㈣埍閮ㄨ〃鎵?,rule:'姣忎汉娆?2鍒?,ctrl:{type:'step',unit:'浜烘',delta:2}},
-{id:'j09',num:'4.9',name:'妫€鏌ヨ繃绋嬩腑寰楀埌鍒嗛儴琛ㄦ壃',rule:'姣忎汉娆?1鍒?,ctrl:{type:'step',unit:'浜烘',delta:1}},
-{id:'j10',num:'4.10',name:'鏈堝害鍚勭被妫€鏌ユ湭鍑虹幇闂',rule:'鍒嗛槦+5鍒?,ctrl:{type:'toggle',score:5}},
+{name:'4.检查', items:[
+{id:'j01',num:'4.1',name:'局方检查问题（出现重复性问题双倍扣分）',rule:'每人次-10分',ctrl:{type:'step',unit:'人次',delta:-10}},
+{id:'j02',num:'4.2',name:'股份检查问题（出现重复性问题双倍扣分）',rule:'每人次-8分',ctrl:{type:'step',unit:'人次',delta:-8}},
+{id:'j03',num:'4.3',name:'分公司层级检查问题（出现重复性问题双倍扣分）',rule:'每人次-5分',ctrl:{type:'step',unit:'人次',delta:-5}},
+{id:'j04',num:'4.4',name:'客舱部检查问题（出现重复性问题双倍扣分）',rule:'每人次-5分',ctrl:{type:'step',unit:'人次',delta:-5}},
+{id:'j05',num:'4.5',name:'乘务日志/二维码反馈问题（累计考核）',rule:'每人次-3/-5/-10分',ctrl:{type:'input'}},
+{id:'j06',num:'4.6',name:'分部早出港/航线/驻外检查问题（出现重复性问题双倍扣分）',rule:'每人次-3分',ctrl:{type:'step',unit:'人次',delta:-3}},
+{id:'j07',num:'4.7',name:'检查过程中得到局方/集团/股份表扬',rule:'每人次+3分',ctrl:{type:'step',unit:'人次',delta:3}},
+{id:'j08',num:'4.8',name:'检查过程中得到分公司/客舱部表扬',rule:'每人次+2分',ctrl:{type:'step',unit:'人次',delta:2}},
+{id:'j09',num:'4.9',name:'检查过程中得到分部表扬',rule:'每人次+1分',ctrl:{type:'step',unit:'人次',delta:1}},
+{id:'j10',num:'4.10',name:'月度各类检查未出现问题',rule:'分队+5分',ctrl:{type:'toggle',score:5}},
 ]},
-{name:'5.杩愯绠＄悊', items:[
-{id:'y01',num:'5.1',name:'瀹㈣埍鏅氬叧鑸遍棬/鑸彮寤惰/鑸彮鍙栨秷/涓嶉厤鍚堣繍琛屼簨浠讹紙璐ｄ换鍘熷洜锛?,rule:'姣忎汉娆?30鍒?,ctrl:{type:'step',unit:'浜烘',delta:-30}},
-{id:'y02',num:'5.2',name:'婕忛',rule:'姣忎汉娆?10鍒?,ctrl:{type:'step',unit:'浜烘',delta:-10}},
-{id:'y03',num:'5.3',name:'琚晫瀹氫负杩熷埌',rule:'姣忎汉娆?8鍒?,ctrl:{type:'step',unit:'浜烘',delta:-8}},
-{id:'y04',num:'5.4',name:'涓€鑸梾鍋囧ぉ鏁般€愯妭鍋囨棩鍙婄壒娈婃棩鏈熷弻鍊嶏紝鏈堝害0灏忔椂浜哄憳涓嶆秹鍙娿€?,rule:'姣忎汉/澶?0.2鍒?,ctrl:{type:'step',unit:'浜哄ぉ',delta:-0.2}},
-{id:'y05',num:'5.5',name:'涓存椂鐥呭亣澶╂暟銆愯妭鍋囨棩鍙婄壒娈婃棩鏈熷弻鍊嶏紝鏈堝害0灏忔椂浜哄憳涓嶆秹鍙娿€?,rule:'姣忎汉/澶?0.5鍒?,ctrl:{type:'step',unit:'浜哄ぉ',delta:-0.5}},
-{id:'y06',num:'5.6',name:'绱ф€ョ梾鍋囧ぉ鏁般€愯妭鍋囨棩鍙婄壒娈婃棩鏈熷弻鍊嶏紝鏈堝害0灏忔椂浜哄憳涓嶆秹鍙娿€?,rule:'姣忎汉/澶?3鍒?,ctrl:{type:'step',unit:'浜哄ぉ',delta:-3}},
-{id:'y07',num:'5.7',name:'鏈堝害0灏忔椂浜哄憳',rule:'姣忎汉娆?2鍒?,ctrl:{type:'step',unit:'浜烘',delta:-2}},
-{id:'y08',num:'5.8',name:'浼戝亣鎸囨爣鏈畬鎴?,rule:'涓嶈揪鏍?3鍒?,ctrl:{type:'toggle',score:-3}},
-{id:'y09',num:'5.9',name:'鏈寜鏃跺畬鎴愮簿缁嗗姞姘?,rule:'姣忎汉娆?2鍒?,ctrl:{type:'step',unit:'浜烘',delta:-2}},
-{id:'y10',num:'5.10',name:'涓寸晫婕忛锛堝凡閫氱煡闇€瑕佽埅鐝崲浜虹瓑鎯呭舰锛?,rule:'姣忎汉娆?5鍒?,ctrl:{type:'step',unit:'浜烘',delta:-5}},
-{id:'y11',num:'5.11',name:'鐢变簬涓汉鍘熷洜鏈‘璁よ埅鐝紝閫犳垚褰卞搷',rule:'姣忎汉娆?5鍒?,ctrl:{type:'step',unit:'浜烘',delta:-5}},
-{id:'y12',num:'5.12',name:'鑸彮杩愯淇濋殰宸ヤ綔鍑鸿壊锛屽彈鍒颁笂绾ч儴闂ㄨ〃鎵€氭姤',rule:'姣忎汉娆?2鍒?,ctrl:{type:'step',unit:'浜烘',delta:2}},
+{name:'5.运行管理', items:[
+{id:'y01',num:'5.1',name:'客舱晚关舱门/航班延误/航班取消/不配合运行事件（责任原因）',rule:'每人次-30分',ctrl:{type:'step',unit:'人次',delta:-30}},
+{id:'y02',num:'5.2',name:'漏飞',rule:'每人次-10分',ctrl:{type:'step',unit:'人次',delta:-10}},
+{id:'y03',num:'5.3',name:'被界定为迟到',rule:'每人次-8分',ctrl:{type:'step',unit:'人次',delta:-8}},
+{id:'y04',num:'5.4',name:'一般病假天数【节假日及特殊日期双倍，月度0小时人员不涉及】',rule:'每人/天-0.2分',ctrl:{type:'step',unit:'人天',delta:-0.2}},
+{id:'y05',num:'5.5',name:'临时病假天数【节假日及特殊日期双倍，月度0小时人员不涉及】',rule:'每人/天-0.5分',ctrl:{type:'step',unit:'人天',delta:-0.5}},
+{id:'y06',num:'5.6',name:'紧急病假天数【节假日及特殊日期双倍，月度0小时人员不涉及】',rule:'每人/天-3分',ctrl:{type:'step',unit:'人天',delta:-3}},
+{id:'y07',num:'5.7',name:'月度0小时人员',rule:'每人次-2分',ctrl:{type:'step',unit:'人次',delta:-2}},
+{id:'y08',num:'5.8',name:'休假指标未完成',rule:'不达标-3分',ctrl:{type:'toggle',score:-3}},
+{id:'y09',num:'5.9',name:'未按时完成精细加水',rule:'每人次-2分',ctrl:{type:'step',unit:'人次',delta:-2}},
+{id:'y10',num:'5.10',name:'临界漏飞（已通知需要航班换人等情形）',rule:'每人次-5分',ctrl:{type:'step',unit:'人次',delta:-5}},
+{id:'y11',num:'5.11',name:'由于个人原因未确认航班，造成影响',rule:'每人次-5分',ctrl:{type:'step',unit:'人次',delta:-5}},
+{id:'y12',num:'5.12',name:'航班运行保障工作出色，受到上级部门表扬通报',rule:'每人次+2分',ctrl:{type:'step',unit:'人次',delta:2}},
 ]},
-{name:'6.鍥㈤槦绠＄悊', items:[
-{id:'t01',num:'6.1',name:'濯掍綋鏇濆厜鍙婄綉缁滆礋闈㈠奖鍝?,rule:'姣忎汉娆?30鍒?,ctrl:{type:'step',unit:'浜烘',delta:-30}},
-{id:'t02',num:'6.2',name:'杩濆弽璇氫俊鍘熷垯/鍙戠敓缁兼不浜嬩欢',rule:'姣忎汉娆?30鍒?,ctrl:{type:'step',unit:'浜烘',delta:-30}},
-{id:'t03',num:'6.3',name:'涓ぎ绾у獟浣撴姤閬?,rule:'缁勭粐绛栧垝鍒嗛槦+30鍒?,ctrl:{type:'toggle',score:30}},
-{id:'t04',num:'6.4',name:'鐪?甯傜骇濯掍綋鎶ラ亾',rule:'姣忕瘒+5鍒嗭紙涓诲垱鎵€鍦ㄥ垎闃燂級',ctrl:{type:'step',unit:'绡?,delta:5}},
-{id:'t05',num:'6.5',name:'鑲′唤绾у獟浣撴姤閬?,rule:'姣忕瘒+2鍒嗭紙涓诲垱鎵€鍦ㄥ垎闃燂級',ctrl:{type:'step',unit:'绡?,delta:2}},
-{id:'t06',num:'6.6',name:'鍒嗗叕鍙哥骇濯掍綋鎶ラ亾',rule:'姣忕瘒+1鍒嗭紙涓婇檺+5鍒嗭級',ctrl:{type:'step',unit:'绡?,delta:1,max:5}},
-{id:'t07',num:'6.7',name:'鎶曠瀹ｄ紶绱犳潗',rule:'姣忕瘒+0.5鍒嗭紙涓婇檺+4鍒嗭級',ctrl:{type:'step',unit:'绡?,delta:0.5,max:4}},
-{id:'t08',num:'6.8',name:'鑾峰緱灞€鏂?闆嗗洟/鑲′唤瀹㈣埍鍙婁互涓婂悇绫昏崳瑾夊鍔憋紙闈炲垎閮ㄦ帹鑽愶級',rule:'姣忎汉娆?15鍒嗭紙鑾峰浜烘墍鍦ㄥ垎闃燂級',ctrl:{type:'step',unit:'浜烘',delta:15}},
-{id:'t09',num:'6.9',name:'鑾峰緱鍒嗗叕鍙稿悇绫昏崳瑾夊鍔憋紙闈炲垎閮ㄦ帹鑽愶級',rule:'姣忎汉娆?10鍒嗭紙鑾峰浜烘墍鍦ㄥ垎闃燂級',ctrl:{type:'step',unit:'浜烘',delta:10}},
-{id:'t10',num:'6.10',name:'鍚勭被寰佹枃/璇勬瘮娲诲姩鑾峰',rule:'姣忔+2鍒嗭紙涓诲垱鎵€鍦ㄥ垎闃燂級',ctrl:{type:'step',unit:'娆?,delta:2}},
-{id:'t11',num:'6.11',name:'鐝粍鏈堝害浼氳/娲诲姩寮€灞?,rule:'姣忓紑灞?娆?2鍒嗭紙涓婇檺2鍒嗭級',ctrl:{type:'toggle',score:2}},
-{id:'t12',num:'6.12',name:'寮€灞曠彮缁勭粨瀵瑰瓙宸ヤ綔',rule:'姣忔+5鍒?,ctrl:{type:'step',unit:'娆?,delta:5}},
-{id:'t13',num:'6.13',name:'杩濆弽瀹㈣埍閮?鍒嗛儴琛屾斂绠＄悊瑙勫畾',rule:'姣忎汉娆?5鍒?,ctrl:{type:'step',unit:'浜烘',delta:-5}},
-{id:'t14',num:'6.14',name:'閫夋淳浜哄憳鍙傚姞鍚勭被娲诲姩',rule:'姣忎汉娆?0.5鍒?,ctrl:{type:'step',unit:'浜烘',delta:0.5}},
-{id:'t15',num:'6.15',name:'鏈兘鍙婃椂浼犺揪宸ヤ綔瑕佹眰锛岄€犳垚褰卞搷',rule:'鍒嗛槦-3鍒?,ctrl:{type:'toggle',score:-3}},
-{id:'t16',num:'6.16',name:'鏈寜瑙勫畾鏃堕檺瀹屾垚宸ヤ綔锛屽奖鍝嶅垎閮ㄥ伐浣滆繘搴?,rule:'鍒嗛槦-5鍒?,ctrl:{type:'toggle',score:-5}},
-{id:'t17',num:'6.17',name:'宸ヤ綔瀹屾垚璐ㄩ噺涓嶉珮',rule:'鍒嗛槦-5鍒?,ctrl:{type:'toggle',score:-5}},
-{id:'t18',num:'6.18',name:'鍥犵鐞嗕笉褰撻€犳垚鍒嗛儴鑰冩牳鎵ｅ垎',rule:'鍒嗛槦-10鍒?,ctrl:{type:'toggle',score:-10}},
-{id:'t19',num:'6.19',name:'鏈寜鏈熷舰鎴愬垎闃熷彴璐?,rule:'鍒嗛槦-10鍒?,ctrl:{type:'toggle',score:-10}},
+{name:'6.团队管理', items:[
+{id:'t01',num:'6.1',name:'媒体曝光及网络负面影响',rule:'每人次-30分',ctrl:{type:'step',unit:'人次',delta:-30}},
+{id:'t02',num:'6.2',name:'违反诚信原则/发生综治事件',rule:'每人次-30分',ctrl:{type:'step',unit:'人次',delta:-30}},
+{id:'t03',num:'6.3',name:'中央级媒体报道',rule:'组织策划分队+30分',ctrl:{type:'toggle',score:30}},
+{id:'t04',num:'6.4',name:'省/市级媒体报道',rule:'每篇+5分（主创所在分队）',ctrl:{type:'step',unit:'篇',delta:5}},
+{id:'t05',num:'6.5',name:'股份级媒体报道',rule:'每篇+2分（主创所在分队）',ctrl:{type:'step',unit:'篇',delta:2}},
+{id:'t06',num:'6.6',name:'分公司级媒体报道',rule:'每篇+1分（上限+5分）',ctrl:{type:'step',unit:'篇',delta:1,max:5}},
+{id:'t07',num:'6.7',name:'投稿宣传素材',rule:'每篇+0.5分（上限+4分）',ctrl:{type:'step',unit:'篇',delta:0.5,max:4}},
+{id:'t08',num:'6.8',name:'获得局方/集团/股份客舱及以上各类荣誉奖励（非分部推荐）',rule:'每人次+15分（获奖人所在分队）',ctrl:{type:'step',unit:'人次',delta:15}},
+{id:'t09',num:'6.9',name:'获得分公司各类荣誉奖励（非分部推荐）',rule:'每人次+10分（获奖人所在分队）',ctrl:{type:'step',unit:'人次',delta:10}},
+{id:'t10',num:'6.10',name:'各类征文/评比活动获奖',rule:'每次+2分（主创所在分队）',ctrl:{type:'step',unit:'次',delta:2}},
+{id:'t11',num:'6.11',name:'班组月度会议/活动开展',rule:'每开展1次+2分（上限2分）',ctrl:{type:'toggle',score:2}},
+{id:'t12',num:'6.12',name:'开展班组结对子工作',rule:'每次+5分',ctrl:{type:'step',unit:'次',delta:5}},
+{id:'t13',num:'6.13',name:'违反客舱部/分部行政管理规定',rule:'每人次-5分',ctrl:{type:'step',unit:'人次',delta:-5}},
+{id:'t14',num:'6.14',name:'选派人员参加各类活动',rule:'每人次+0.5分',ctrl:{type:'step',unit:'人次',delta:0.5}},
+{id:'t15',num:'6.15',name:'未能及时传达工作要求，造成影响',rule:'分队-3分',ctrl:{type:'toggle',score:-3}},
+{id:'t16',num:'6.16',name:'未按规定时限完成工作，影响分部工作进度',rule:'分队-5分',ctrl:{type:'toggle',score:-5}},
+{id:'t17',num:'6.17',name:'工作完成质量不高',rule:'分队-5分',ctrl:{type:'toggle',score:-5}},
+{id:'t18',num:'6.18',name:'因管理不当造成分部考核扣分',rule:'分队-10分',ctrl:{type:'toggle',score:-10}},
+{id:'t19',num:'6.19',name:'未按期形成分队台账',rule:'分队-10分',ctrl:{type:'toggle',score:-10}},
 ]},
-{name:'7.鍏朵粬', items:[
-{id:'q01',num:'7.1',name:'缁忓垎閮ㄧ爺绌跺喅璁殑鍏朵粬浜嬩欢',rule:'鐢卞垎閮ㄥ喅璁?,ctrl:{type:'input'}},
+{name:'7.其他', items:[
+{id:'q01',num:'7.1',name:'经分部研究决议的其他事件',rule:'由分部决议',ctrl:{type:'input'}},
 ]}
 ];
 
@@ -545,47 +548,47 @@ const HIST_TOTALS = {
 };
 
 const PRESET_DATA = {
-'2026-04':{"0_s08":{"score":2,"note":"鏉ㄦ鑺満涓婄壒鎯呭缃瀹㈣埍閮ㄨ〃鎵?},"3_s08":{"score":6,"note":"闄堟旦娉姐€佹潹姊撳┓銆侀棲涓€姒昞"鏈洪椆\"澶勭疆浜嬩欢琚鑸遍儴琛ㄦ壃"},"0_f10":{"score":-2,"note":"杈涚幉 -2鍒?},"0_f13":{"score":-3.5,"note":"鐜嬫棴銆侀┈鐟剁懚銆佺櫧鑻ュ啺銆佹鍢夌拹銆佽碍鎮︺€佸垬閫搁椈銆佹潕瀹夌惇"},"1_f13":{"score":-3,"note":"鏉庡崥銆侀檲鏉般€佺墰鏅躲€佸紶瀹併€佽儭璧€佸垬鐝婄強"},"2_f13":{"score":-2.5,"note":"鐢板畞銆佸紶娈垮銆佹潕鍢夈€侀檲闈撻潛銆侀┈鍔涜但"},"3_f13":{"score":-1,"note":"鏉庤銆佹潕鑺濊惐"},"0_p07":{"score":0.3,"note":"璋偊浜岀骇 +0.3鍒?},"2_p08":{"score":-2,"note":"鐜嬩腹鏈畬鎴愬崡鑸狤瀹跺涔犳帴榫欙紱璧典匠鏈畬鎴愬畨鍏ㄤ俊鎭壙璇轰功绛剧讲"},"0_j02":{"score":-64,"note":"鍒橀€搁椈-8锛涙潕娌汇€佸紶閼懌閲嶅椤?32锛涚帇澶╂€￠噸澶嶉」-16锛涚敯鏅虹敓-8"},"2_j02":{"score":-16,"note":"寮犻搫-8锛涗簬浣?8"},"3_j02":{"score":-8,"note":"涓涚惓-8"},"1_j04":{"score":-10,"note":"鐗涙櫠銆佹矆缇庨洩鑸嚎鐩戝療闂"},"0_j08":{"score":2,"note":"璋畤瓒呮棭鍑烘腐琚〃鎵?},"1_j08":{"score":6,"note":"寮犲畞銆佺墰鏅躲€佹矆缇庨洩鑸嚎鐩戝療琚〃鎵?},"2_j08":{"score":2,"note":"寮犲钩鏃╁嚭娓琛ㄦ壃"},"3_j08":{"score":6,"note":"闂竴姒曘€佺帇鏅撳鏃╁嚭娓琛ㄦ壃锛涙潕缇氱鑸嚎鐩戝療琚〃鎵?},"1_y02":{"score":-10,"note":"鍒樻磱娲嬪彂鐢熸紡椋?},"0_y04":{"score":-12.6,"note":"鐜嬪畨鐞?0澶┿€佺帇鐜?0澶┿€佹潕瀹夌惇3澶?},"2_y04":{"score":-4.4,"note":"鐢板畞22澶?},"3_y04":{"score":-0.2,"note":"闄堟€濇嚳1澶?},"0_y05":{"score":-1,"note":"鑳℃槬闆?澶┿€侀┈鐟剁懚1澶?},"3_y05":{"score":-0.5,"note":"鍏版1澶?},"0_y06":{"score":-3,"note":"鏉ㄦ鑺?澶?},"0_y07":{"score":-4,"note":"鐜嬪畨鐞€佺帇鐜?},"1_y08":{"score":-3,"note":"鏈畬鎴?鏈堜紤鍋囨寚鏍?},"2_y08":{"score":-3,"note":"鏈畬鎴?鏈堜紤鍋囨寚鏍?},"0_t10":{"score":2,"note":"璋偊瀹夊叏寰佹枃琚鑸遍儴閲囩撼鍙傝禌"},"1_t10":{"score":2,"note":"鏉滅帀鍗氬畨鍏ㄥ緛鏂囪瀹㈣埍閮ㄩ噰绾冲弬璧?},"2_t10":{"score":2,"note":"鏈变笘鐞﹀畨鍏ㄥ緛鏂囪瀹㈣埍閮ㄩ噰绾冲弬璧?},"3_t13":{"score":-5,"note":"閮戞旦鐢锋湭鎻愪氦绂婚暱鐢宠"},"0_t14":{"score":12,"note":"浠ｆ槑濞?0.5脳2锛涙潹閲戞稕+0.5锛涘井talk+10.5"},"1_t14":{"score":6,"note":"鍒樺畯绉﹀瓙娲嬫矆缇庨洩+1.5锛涘垬瀹?0.5锛涘井talk+4"},"2_t14":{"score":7.5,"note":"鍚曞寮犲钩鏉ㄩ洩璧典匠+2锛涘懆鑸?0.5锛涘井talk+5"},"3_t14":{"score":4.5,"note":"閮疂閾?0.5脳2锛涘井talk+2.5锛涜涔﹀垎浜?1"},"0_q01":{"score":-10,"note":"寮犲簡鑼广€佸柣椋為厭娴嬬鍒拌繚瑙?},"1_q01":{"score":5,"note":"鏈轰笂浠峰€煎垱閫犲垎闃熺涓€鍚?},"2_q01":{"score":3,"note":"鍛ㄨ埅鍙傚姞WE TALK娲诲姩"}},
-'2026-01':{"2_s07":{"score":9,"note":"鍗滈獪銆佸紶娆ｈ崳icare浼樼鎶ュ憡浜猴紱鐜嬫絿娼噄care浼樼宸ヤ綔鑰?},"3_f04":{"score":-10,"note":"鏉庤 -10鍒?},"0_f10":{"score":-2,"note":"鐜嬫棴 -2鍒?},"0_p07":{"score":0.3,"note":"鐢版櫤鐢?绾?+0.3鍒?},"3_j02":{"score":-8,"note":"瀛熼簰鏉捐埅绾跨洃瀵?},"3_j04":{"score":-5,"note":"鐜嬬啓鎱ц埅绾跨洃瀵?},"1_j05":{"score":-3,"note":"宀崇憺鐞?-3鍒?},"2_j05":{"score":-6,"note":"鏉ㄩ洩銆佽档浣?-6鍒?},"1_j10":{"score":5,"note":"妫€鏌ユ湭鍑虹幇闂+5鍒?},"0_y04":{"score":-13.2,"note":"鐜嬬帴26澶┿€佺帇瀹夌惇23澶┿€佽阿澶?澶┿€侀┈鐟剁懚5澶┿€佹潹閲戞稕5澶?},"1_y04":{"score":-1.2,"note":"鐗涙櫠3澶┿€佹潕娌涜埅3澶?},"2_y04":{"score":-8.4,"note":"寮犻搫5澶┿€佺洊鐩婃皯3澶┿€佺敯瀹?澶?},"3_y04":{"score":-5,"note":"閭遍洩濞?澶┿€侀儜娴╃敺2澶?},"1_y05":{"score":-0.5,"note":"鐗涙櫠1澶?},"2_y05":{"score":-0.5,"note":"寮犻搫1澶?},"1_y06":{"score":-3,"note":"绉﹀瓙娲?澶?},"3_y06":{"score":-3,"note":"閭遍洩濞?澶?},"0_y07":{"score":-4,"note":"鐜嬪畨鐞€佺帇鐜?},"0_t06":{"score":4,"note":"鍒橀缚閿惷?銆佹潹姊撹姰椹功鍑姈闊冲彿"},"2_t06":{"score":2,"note":"鍛ㄨ埅銆佸紶鍐夊饯鎶栭煶鍙?},"3_t06":{"score":1,"note":"鐜嬪ぉ璧愭姈闊冲彿"},"3_t11":{"score":2,"note":"鍒嗛槦缃戞牸闀夸互涓婁細璁?},"1_t13":{"score":-5,"note":"绉﹀瓙娲嬭偂鍚夎埍涓€閮ㄥ彂銆?026銆?鍙?},"0_t14":{"score":0.5,"note":"灏归簰鐟炶繋鏂版槬鎽勫奖浣滃搧"},"2_t14":{"score":1.5,"note":"娌欒姵鑺冲競鍦洪儴绀间华+1锛涚帇娼囨絿杩庢柊鏄ユ憚褰?0.5"},"3_t14":{"score":1,"note":"閮疂閾滄湇鍔℃彁鍗囦細+0.5锛涚帇瓒呯兢杩庢柊鏄ョ粯鐢?0.5"},"3_q01":{"score":-10,"note":"鐜嬭幑鏃嬭偂鍚夎埍涓€閮ㄥ彂銆?026銆?鍙?}},
-'2026-02':{"0_s08":{"score":8,"note":"浠樺▓銆佸垬楦块攼銆佸惔濮楀銆侀儙鐔欒悕褰曞埗闃叉粦瑙嗛鑾峰鑸遍儴琛ㄦ壃"},"3_s08":{"score":4,"note":"鐜嬪ぉ璧愩€侀儹瀹濋摐褰曞埗闃叉粦瑙嗛鑾峰鑸遍儴琛ㄦ壃"},"1_f10":{"score":-2,"note":"鍒樺畯2鏈堜箻鍔￠暱鏈祴璇?},"3_f10":{"score":-2,"note":"寮犺悓2鏈堜箻鍔￠暱鏈祴璇?},"1_p07":{"score":0.3,"note":"鏉庢矝鑸笁绾?+0.3鍒?},"0_j04":{"score":-5,"note":"鐢版櫤鐢熷鑸遍儴鏃╁嚭娓棶棰?},"1_j04":{"score":-5,"note":"鐜嬫邯鑻ュ鑸遍儴鏃╁嚭娓棶棰?},"2_j04":{"score":-5,"note":"鐜嬫絿娼囧鑸遍儴鏃╁嚭娓棶棰?},"3_j10":{"score":5,"note":"妫€鏌ユ湭鍑虹幇闂+5鍒?},"0_y04":{"score":-10.8,"note":"鐜嬪畨鐞?8澶┿€佺帇鐜?3澶┿€侀┈鐟剁懚3澶?},"1_y04":{"score":-0.4,"note":"鍒樻檽杩?澶┿€佸垬娲嬫磱1澶?},"2_y04":{"score":-2,"note":"鐢板畞6澶┿€佸紶娆ｈ崳4澶?},"3_y04":{"score":-1.8,"note":"閭遍洩濞?澶?鍚?澶╄妭鍋囨棩鍙屽€?"},"0_y07":{"score":-4,"note":"鐜嬪畨鐞€佺帇鐜?},"0_y08":{"score":-3,"note":"3鏈堜紤鍋囨寚鏍囨湭瀹屾垚"},"1_y08":{"score":-3,"note":"3鏈堜紤鍋囨寚鏍囨湭瀹屾垚"},"2_y08":{"score":-3,"note":"3鏈堜紤鍋囨寚鏍囨湭瀹屾垚"},"3_y08":{"score":-3,"note":"3鏈堜紤鍋囨寚鏍囨湭瀹屾垚"},"1_t13":{"score":-5,"note":"涓佺惁绂婚暱鏈彁浜ょ敵璇?},"2_t13":{"score":-5,"note":"鐧芥ⅵ绔圭闀挎湭鎻愪氦鐢宠"},"0_t14":{"score":6.5,"note":"瀹㈣埍閮ㄥ伐浣滀細5浜猴紱甯傚満閮ㄧぜ浠?浜猴紱鍖呴ズ瀛?浜?},"1_t14":{"score":2.5,"note":"瀹㈣埍閮ㄥ伐浣滀細3浜猴紱鍖呴ズ瀛?浜?},"2_t14":{"score":3.5,"note":"瀹㈣埍閮ㄥ伐浣滀細2浜猴紱甯傚満閮ㄧぜ浠?浜猴紱鍖呴ズ瀛?浜?},"3_t14":{"score":5.5,"note":"瀹㈣埍閮ㄥ伐浣滀細4浜猴紱鍖呴ズ瀛?浜?},"2_q01":{"score":-6,"note":"瑜氱繕涓存椂閿佺彮-2锛涙堡鍗氬煿璁嚭绁ㄩ敊璇?4"}},
-'2026-03':{"0_s07":{"score":3,"note":"鐜嬫棴icare2025绗洓瀛ｅ害浼樼鎶ュ憡浜?},"1_s07":{"score":3,"note":"鍒樺郴鐢穒care2025绗洓瀛ｅ害浼樼鎶ュ憡浜?},"2_s07":{"score":3,"note":"鐜嬫絿娼噄care2025绗洓瀛ｅ害浼樼宸ヤ綔鑰?},"3_s08":{"score":2,"note":"闂竴姒旵Z6342鍏呯數瀹濆彂鐑紦鍖呬簨浠跺缃緱褰撹幏瀹㈣埍閮ㄨ〃鎵?},"1_f04":{"score":-10,"note":"鐜嬫邯鑻?.24CZ6155"},"2_f04":{"score":-10,"note":"寮犵儊2.24CZ6155"},"3_f04":{"score":-10,"note":"鐜嬭幑鏃?.6CZ6852"},"1_f05":{"score":-5,"note":"鍒樺郴鐢?.24CZ6155"},"0_f06":{"score":2.4,"note":"鍒橀缚閿?銆佹潕娌?銆侀┈鐟剁懚2銆佽碍鎮?"},"1_f06":{"score":1.8,"note":"鍒樻磱娲?銆佺帇娆?銆佽淳鐠?"},"2_f06":{"score":1.2,"note":"鐜嬫絿娼?銆佸悤濞?"},"3_f06":{"score":2.4,"note":"鐜嬭秴缇?銆佸磾娣戠嚂2銆佹弧鎬″饯2銆侀偟鍐板€?"},"1_f08":{"score":2,"note":"閮匠瀹㈣埍閮ㄩ瀵艰〃鎵?},"2_f11":{"score":-2,"note":"宕旈娣戞満涓婂讥琛ラ敊璇?},"0_p08":{"score":-1,"note":"鐢版櫤鐢熸湭瀹屾垚E瀹朵笟鍔＄兢鎺ラ緳瀛︿範"},"2_p08":{"score":-4,"note":"寮犻洦缁€佸紶鍐夊饯銆佽寖棣ㄤ簣銆佺帇璇楀獩鏈畬鎴怑瀹朵笟鍔＄兢鎺ラ緳瀛︿範"},"3_p09":{"score":-20,"note":"閮戞旦鐢锋湭瀹屾垚涓氬姟鍩硅锛涙潕缇氱绛?浜烘湭瀹屾垚涓夋湀涓€璁竴鑰?},"0_j02":{"score":-24,"note":"鏉庢不寮犻懌閼獵Z5176-24鍒嗭紱鐜嬪ぉ鎬Z8238鎵ｅ垎"},"0_j04":{"score":-10,"note":"鏉ㄩ噾娑涙秷闃叉鏌ラ棶棰?閲嶅鎬?"},"1_j04":{"score":-5,"note":"鍒樻檽杩棭鍑烘腐闂"},"2_j04":{"score":-5,"note":"鑲栧CZ6541鑸彮闂"},"0_j08":{"score":2,"note":"璋畤瓒呮棭鍑烘腐琚〃鎵?},"3_j08":{"score":2,"note":"闂竴姒曟棭鍑烘腐琚〃鎵?},"3_j10":{"score":5,"note":"妫€鏌ユ湭鍑虹幇闂+5鍒?},"0_y04":{"score":-12.4,"note":"鐜嬪畨鐞?1澶┿€佺帇鐜?1澶?},"1_y04":{"score":-1.4,"note":"鍒樻檽杩?澶┿€佸垬娲嬫磱5澶?},"3_y04":{"score":-0.8,"note":"鐜嬫檽濞?澶?},"0_y07":{"score":-4,"note":"鐜嬪畨鐞€佺帇鐜?},"0_t06":{"score":2,"note":"鍒橀缚閿愬崡鑸悏鏋楁姈闊冲垔鐧昏棰懨?"},"1_t06":{"score":1,"note":"浜戜笂宸惧讣鍖昏€呮姢鑸绫?},"1_t11":{"score":2,"note":"涓夊叓鑺傛椿鍔ㄥ紑灞?},"0_t14":{"score":0.5,"note":"浠ｆ槑濞熷厷椋庡粔鏀垮缓璁?},"2_t14":{"score":0.5,"note":"鐜嬫絿娼囧厷椋庡粔鏀垮缓璁?},"3_t14":{"score":1,"note":"閮疂閾滃畨鍏ㄥぇ璁插爞+0.5锛涢瓘浣冲厷椋庡粔鏀垮缓璁?0.5"},"3_t16":{"score":-5,"note":"鏉庤鍑哄煿璁満绁ㄩ敊璇?}}
+'2026-04':{"0_s08":{"score":2,"note":"杨梓芮机上特情处置被客舱部表扬"},"3_s08":{"score":6,"note":"陈浩泽、杨梓婷、闫一榕\"机闹\"处置事件被客舱部表扬"},"0_f10":{"score":-2,"note":"辛玲 -2分"},"0_f13":{"score":-3.5,"note":"王旭、马瑶瑶、白若冰、殷嘉璐、谭悦、刘逸闻、李安琪"},"1_f13":{"score":-3,"note":"李博、陈杰、牛晶、张宁、胡赫、刘珊珊"},"2_f13":{"score":-2.5,"note":"田宁、张殿奎、李嘉、陈靓靓、马力赫"},"3_f13":{"score":-1,"note":"李诺、李芝萱"},"0_p07":{"score":0.3,"note":"谭悦二级 +0.3分"},"2_p08":{"score":-2,"note":"王丹未完成南航E家学习接龙；赵佳未完成安全信息承诺书签署"},"0_j02":{"score":-64,"note":"刘逸闻-8；李治、张鑫鑫重复项-32；王天怡重复项-16；田智生-8"},"2_j02":{"score":-16,"note":"张铄-8；于佳-8"},"3_j02":{"score":-8,"note":"丛琳-8"},"1_j04":{"score":-10,"note":"牛晶、沈美雪航线监察问题"},"0_j08":{"score":2,"note":"谭宇超早出港被表扬"},"1_j08":{"score":6,"note":"张宁、牛晶、沈美雪航线监察被表扬"},"2_j08":{"score":2,"note":"张平早出港被表扬"},"3_j08":{"score":6,"note":"闫一榕、王晓娜早出港被表扬；李羚祎航线监察被表扬"},"1_y02":{"score":-10,"note":"刘洋洋发生漏飞"},"0_y04":{"score":-12.6,"note":"王安琪30天、王玥30天、李安琪3天"},"2_y04":{"score":-4.4,"note":"田宁22天"},"3_y04":{"score":-0.2,"note":"陈思懿1天"},"0_y05":{"score":-1,"note":"胡春雅1天、马瑶瑶1天"},"3_y05":{"score":-0.5,"note":"兰欣1天"},"0_y06":{"score":-3,"note":"杨梓芮1天"},"0_y07":{"score":-4,"note":"王安琪、王玥"},"1_y08":{"score":-3,"note":"未完成5月休假指标"},"2_y08":{"score":-3,"note":"未完成5月休假指标"},"0_t10":{"score":2,"note":"谭悦安全征文被客舱部采纳参赛"},"1_t10":{"score":2,"note":"杜玉博安全征文被客舱部采纳参赛"},"2_t10":{"score":2,"note":"朱世琦安全征文被客舱部采纳参赛"},"3_t13":{"score":-5,"note":"郑浩男未提交离长申请"},"0_t14":{"score":12,"note":"代明娟+0.5×2；杨金涛+0.5；微talk+10.5"},"1_t14":{"score":6,"note":"刘宏秦子洋沈美雪+1.5；刘宏+0.5；微talk+4"},"2_t14":{"score":7.5,"note":"吕娜张平杨雪赵佳+2；周航+0.5；微talk+5"},"3_t14":{"score":4.5,"note":"郭宝铜+0.5×2；微talk+2.5；读书分享+1"},"0_q01":{"score":-10,"note":"张庆茹、喻飞酒测签到违规"},"1_q01":{"score":5,"note":"机上价值创造分队第一名"},"2_q01":{"score":3,"note":"周航参加WE TALK活动"}},
+'2026-01':{"2_s07":{"score":9,"note":"卜骜、张欣荣icare优秀报告人；王潇潇icare优秀工作者"},"3_f04":{"score":-10,"note":"李诺 -10分"},"0_f10":{"score":-2,"note":"王旭 -2分"},"0_p07":{"score":0.3,"note":"田智生2级 +0.3分"},"3_j02":{"score":-8,"note":"孟麒松航线监察"},"3_j04":{"score":-5,"note":"王熙慧航线监察"},"1_j05":{"score":-3,"note":"岳瑞琪 -3分"},"2_j05":{"score":-6,"note":"杨雪、赵佳 -6分"},"1_j10":{"score":5,"note":"检查未出现问题+5分"},"0_y04":{"score":-13.2,"note":"王玥26天、王安琪23天、谢天7天、马瑶瑶5天、杨金涛5天"},"1_y04":{"score":-1.2,"note":"牛晶3天、李沛航3天"},"2_y04":{"score":-8.4,"note":"张铄5天、盖益民3天、田宁2天"},"3_y04":{"score":-5,"note":"邱雪威8天、郑浩男2天"},"1_y05":{"score":-0.5,"note":"牛晶1天"},"2_y05":{"score":-0.5,"note":"张铄1天"},"1_y06":{"score":-3,"note":"秦子洋1天"},"3_y06":{"score":-3,"note":"邱雪威1天"},"0_y07":{"score":-4,"note":"王安琪、王玥"},"0_t06":{"score":4,"note":"刘鸿锐×2、杨梓芮马书凯抖音号"},"2_t06":{"score":2,"note":"周航、张冉彤抖音号"},"3_t06":{"score":1,"note":"王天赐抖音号"},"3_t11":{"score":2,"note":"分队网格长以上会议"},"1_t13":{"score":-5,"note":"秦子洋股吉舱一部发〔2026〕1号"},"0_t14":{"score":0.5,"note":"尹麒瑞迎新春摄影作品"},"2_t14":{"score":1.5,"note":"沙芳芳市场部礼仪+1；王潇潇迎新春摄影+0.5"},"3_t14":{"score":1,"note":"郭宝铜服务提升会+0.5；王超群迎新春绘画+0.5"},"3_q01":{"score":-10,"note":"王莹旋股吉舱一部发〔2026〕1号"}},
+'2026-02':{"0_s08":{"score":8,"note":"付娈、刘鸿锐、吴姗姗、郎熙萍录制防滑视频获客舱部表扬"},"3_s08":{"score":4,"note":"王天赐、郭宝铜录制防滑视频获客舱部表扬"},"1_f10":{"score":-2,"note":"刘宏2月乘务长未测评"},"3_f10":{"score":-2,"note":"张萌2月乘务长未测评"},"1_p07":{"score":0.3,"note":"李沛航三级 +0.3分"},"0_j04":{"score":-5,"note":"田智生客舱部早出港问题"},"1_j04":{"score":-5,"note":"王溪若客舱部早出港问题"},"2_j04":{"score":-5,"note":"王潇潇客舱部早出港问题"},"3_j10":{"score":5,"note":"检查未出现问题+5分"},"0_y04":{"score":-10.8,"note":"王安琪28天、王玥23天、马瑶瑶3天"},"1_y04":{"score":-0.4,"note":"刘晓迪1天、刘洋洋1天"},"2_y04":{"score":-2,"note":"田宁6天、张欣荣4天"},"3_y04":{"score":-1.8,"note":"邱雪威6天(含3天节假日双倍)"},"0_y07":{"score":-4,"note":"王安琪、王玥"},"0_y08":{"score":-3,"note":"3月休假指标未完成"},"1_y08":{"score":-3,"note":"3月休假指标未完成"},"2_y08":{"score":-3,"note":"3月休假指标未完成"},"3_y08":{"score":-3,"note":"3月休假指标未完成"},"1_t13":{"score":-5,"note":"丁琦离长未提交申请"},"2_t13":{"score":-5,"note":"白梦竹离长未提交申请"},"0_t14":{"score":6.5,"note":"客舱部工作会5人；市场部礼仪2人；包饺子6人"},"1_t14":{"score":2.5,"note":"客舱部工作会3人；包饺子2人"},"2_t14":{"score":3.5,"note":"客舱部工作会2人；市场部礼仪2人；包饺子3人"},"3_t14":{"score":5.5,"note":"客舱部工作会4人；包饺子7人"},"2_q01":{"score":-6,"note":"褚翘临时锁班-2；汤博培训出票错误-4"}},
+'2026-03':{"0_s07":{"score":3,"note":"王旭icare2025第四季度优秀报告人"},"1_s07":{"score":3,"note":"刘峻男icare2025第四季度优秀报告人"},"2_s07":{"score":3,"note":"王潇潇icare2025第四季度优秀工作者"},"3_s08":{"score":2,"note":"闫一榕CZ6342充电宝发热鼓包事件处置得当获客舱部表扬"},"1_f04":{"score":-10,"note":"王溪若2.24CZ6155"},"2_f04":{"score":-10,"note":"张烁2.24CZ6155"},"3_f04":{"score":-10,"note":"王莹旋3.6CZ6852"},"1_f05":{"score":-5,"note":"刘峻男2.24CZ6155"},"0_f06":{"score":2.4,"note":"刘鸿锐2、李治2、马瑶瑶2、谭悦2"},"1_f06":{"score":1.8,"note":"刘洋洋2、王欣2、贾璐2"},"2_f06":{"score":1.2,"note":"王潇潇2、吕娜2"},"3_f06":{"score":2.4,"note":"王超群2、崔淑燕2、满怡彤2、邵冰倩2"},"1_f08":{"score":2,"note":"郭佳客舱部领导表扬"},"2_f11":{"score":-2,"note":"崔香淑机上弥补错误"},"0_p08":{"score":-1,"note":"田智生未完成E家业务群接龙学习"},"2_p08":{"score":-4,"note":"张雨绮、张冉彤、范馨予、王诗媛未完成E家业务群接龙学习"},"3_p09":{"score":-20,"note":"郑浩男未完成业务培训；李羚祎等9人未完成三月一训一考"},"0_j02":{"score":-24,"note":"李治张鑫鑫CZ5176-24分；王天怡CZ8238扣分"},"0_j04":{"score":-10,"note":"杨金涛消防检查问题(重复性)"},"1_j04":{"score":-5,"note":"刘晓迪早出港问题"},"2_j04":{"score":-5,"note":"肖姗CZ6541航班问题"},"0_j08":{"score":2,"note":"谭宇超早出港被表扬"},"3_j08":{"score":2,"note":"闫一榕早出港被表扬"},"3_j10":{"score":5,"note":"检查未出现问题+5分"},"0_y04":{"score":-12.4,"note":"王安琪31天、王玥31天"},"1_y04":{"score":-1.4,"note":"刘晓迪2天、刘洋洋5天"},"3_y04":{"score":-0.8,"note":"王晓娜4天"},"0_y07":{"score":-4,"note":"王安琪、王玥"},"0_t06":{"score":2,"note":"刘鸿锐南航吉林抖音刊登视频×2"},"1_t06":{"score":1,"note":"云上巾帼医者护航秀米"},"1_t11":{"score":2,"note":"三八节活动开展"},"0_t14":{"score":0.5,"note":"代明娟党风廉政建设"},"2_t14":{"score":0.5,"note":"王潇潇党风廉政建设"},"3_t14":{"score":1,"note":"郭宝铜安全大讲堂+0.5；魏佳党风廉政建设+0.5"},"3_t16":{"score":-5,"note":"李诺出培训机票错误"}}
 };
 
-// ===== 鎺т欢娓叉煋 =====
+// ===== 控件渲染 =====
 function renderCtrl(ti, it, currentScore, currentNote){
   const c = it.ctrl;
   const key = `${ti}_${it.id}`;
   const sc = typeof currentScore==='number' ? currentScore : 0;
   const nt = (currentNote||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 
-  const noteHtml = `<input type="text" class="note-input" id="nt_${key}" value="${nt}" placeholder="澶囨敞">`;
+  const noteHtml = `<input type="text" class="note-input" id="nt_${key}" value="${nt}" placeholder="备注">`;
 
   if(c.type === 'step'){
     const isDeduct = c.delta < 0;
     const isBonus  = c.delta > 0;
     const absDelta  = Math.abs(c.delta);
     const scCls = sc>0?'pos':(sc<0?'neg':'');
-    const maxHint = c.max ? `<span style="font-size:9px;color:var(--text2)">涓婇檺${c.max>0?'+':''}${c.max}</span>` : '';
+    const maxHint = c.max ? `<span style="font-size:9px;color:var(--text2)">上限${c.max>0?'+':''}${c.max}</span>` : '';
     let btnHtml = `<div class="step-ctrl" style="justify-content:center;gap:6px">`;
     if(isDeduct){
-      btnHtml += `<button class="step-btn step-btn-minus" id="btn_${key}" onclick="stepScore(${ti},'${it.id}',${-absDelta},${c.max||9999})" title="鎵?{absDelta}鍒?/ 浜烘" style="width:32px;height:28px;font-size:15px">鈭?/button>`;
+      btnHtml += `<button class="step-btn step-btn-minus" id="btn_${key}" onclick="stepScore(${ti},'${it.id}',${-absDelta},${c.max||9999})" title="扣${absDelta}分 / 人次" style="width:32px;height:28px;font-size:15px">−</button>`;
       btnHtml += `<span class="step-val ${scCls}" id="sv_${key}" style="min-width:40px">${sc>0?'+':''}${sc}</span>`;
-      btnHtml += `<span class="step-unit">鍒?/span>`;
+      btnHtml += `<span class="step-unit">分</span>`;
     } else {
       btnHtml += `<span class="step-val ${scCls}" id="sv_${key}" style="min-width:40px">${sc>0?'+':''}${sc}</span>`;
-      btnHtml += `<span class="step-unit">鍒?/span>`;
-      btnHtml += `<button class="step-btn step-btn-plus" id="btn_${key}" onclick="stepScore(${ti},'${it.id}',${absDelta},${c.max||9999})" title="鍔?{absDelta}鍒?/ 浜烘" style="width:32px;height:28px;font-size:15px">+</button>`;
+      btnHtml += `<span class="step-unit">分</span>`;
+      btnHtml += `<button class="step-btn step-btn-plus" id="btn_${key}" onclick="stepScore(${ti},'${it.id}',${absDelta},${c.max||9999})" title="加${absDelta}分 / 人次" style="width:32px;height:28px;font-size:15px">+</button>`;
     }
     btnHtml += `</div>`;
     return `<div class="score-ctrl">
       ${btnHtml}
-      <div style="font-size:9px;color:var(--text2);margin-top:2px">${isDeduct?'姣忎汉娆?鈭?+absDelta:'姣忎汉娆?+'+c.delta} / ${c.unit} ${maxHint}</div>
+      <div style="font-size:9px;color:var(--text2);margin-top:2px">${isDeduct?'每人次 −'+absDelta:'每人次 +'+c.delta} / ${c.unit} ${maxHint}</div>
       ${noteHtml}
     </div>`;
   } else if(c.type === 'toggle'){
     const triggered = sc !== 0;
-    const labelYes = c.score>0 ? `鉁?宸茶幏寰?${c.score>0?'+':''}${c.score})` : `鉁?宸茶Е鍙?${c.score})`;
-    const labelNo = '鈥?鏈Е鍙?;
+    const labelYes = c.score>0 ? `✓ 已获得(${c.score>0?'+':''}${c.score})` : `✗ 已触发(${c.score})`;
+    const labelNo = '— 未触发';
     return `<div class="score-ctrl">
       <div class="toggle-ctrl">
         <button class="toggle-btn ${triggered?(c.score>0?'active-yes':'active-no'):''}" id="tb_yes_${key}" onclick="toggleScore(${ti},'${it.id}',${c.score})">${labelYes}</button>
@@ -598,14 +601,14 @@ function renderCtrl(ti, it, currentScore, currentNote){
     return `<div class="score-ctrl">
       <div class="step-ctrl">
         <input type="number" step="0.1" class="score-input ${scCls}" id="sc_${key}" value="${sc}" onchange="onInputScore(${ti},'${it.id}')" onfocus="this.select()">
-        <span class="step-unit">鍒?/span>
+        <span class="step-unit">分</span>
       </div>
       ${noteHtml}
     </div>`;
   }
 }
 
-// ===== 姝ヨ繘鎿嶄綔 =====
+// ===== 步进操作 =====
 async function stepScore(ti, id, delta, maxAbs){
   const key = `${ti}_${id}`;
   const y=+document.getElementById('sYear').value;
@@ -634,7 +637,7 @@ async function stepScore(ti, id, delta, maxAbs){
   if(btn) btn.disabled = false;
 }
 
-// ===== 寮€鍏虫搷浣?=====
+// ===== 开关操作 =====
 async function toggleScore(ti, id, scoreVal){
   const key = `${ti}_${id}`;
   const y=+document.getElementById('sYear').value;
@@ -665,7 +668,7 @@ async function toggleScore(ti, id, scoreVal){
   if(noBtn) noBtn.disabled = false;
 }
 
-// ===== 鐩存帴杈撳叆鍒嗗€?=====
+// ===== 直接输入分值 =====
 async function onInputScore(ti, id){
   const key = `${ti}_${id}`;
   const inp = document.getElementById(`sc_${key}`);
@@ -682,7 +685,7 @@ async function onInputScore(ti, id){
   refreshTotals(ti, _cache[ym]);
 }
 
-// ===== 鍒锋柊鍚堣琛?=====
+// ===== 刷新合计行 =====
 function refreshTotals(ti, md){
   const total = calcTeamTotal(ti, md);
   const totalF = parseFloat(total.toFixed(1));
@@ -708,10 +711,10 @@ async function loadScoring(){
   try {
     const md = await ensureMonth(y,m);
     
-    let h=`<div class="card"><div class="card-title">馃搵 ${y}骞?{m}鏈?鍒嗛槦鑰冩牳璇勫垎琛?<span style="font-size:11px;color:var(--text2);font-weight:400">锛?026R5鐗?路 璧峰鍒?{BASE_SCORE}+鍔犲噺鍒?路 浜戠増锛?/span></div>`;
+    let h=`<div class="card"><div class="card-title">📋 ${y}年${m}月 分队考核评分表 <span style="font-size:11px;color:var(--text2);font-weight:400">（2026R5版 · 起始分${BASE_SCORE}+加减分 · 云版）</span></div>`;
     h+=`<div style="overflow-x:auto"><table class="score-table"><thead><tr>`;
-    h+=`<th style="width:30px">搴忓彿</th><th style="min-width:180px">鑰冩牳鏉℃</th><th style="width:100px">璇勫垎瑙勫垯</th>`;
-    TEAMS.forEach((t,ti)=>{h+=`<th class="${TEAM_TH[ti]}" style="min-width:160px">${t}<br><span style="font-size:9px;opacity:.8">鎿嶄綔 / 澶囨敞</span></th>`;});
+    h+=`<th style="width:30px">序号</th><th style="min-width:180px">考核条款</th><th style="width:100px">评分规则</th>`;
+    TEAMS.forEach((t,ti)=>{h+=`<th class="${TEAM_TH[ti]}" style="min-width:160px">${t}<br><span style="font-size:9px;opacity:.8">操作 / 备注</span></th>`;});
     h+=`</tr></thead><tbody>`;
 
     CATS.forEach(cat=>{
@@ -727,23 +730,23 @@ async function loadScoring(){
       });
     });
 
-    h+=`<tr class="total-row" style="background:#f8f9fc"><td colspan="3" style="text-align:right;padding-right:12px">璧峰鍒?/td>`;
+    h+=`<tr class="total-row" style="background:#f8f9fc"><td colspan="3" style="text-align:right;padding-right:12px">起始分</td>`;
     TEAMS.forEach(()=>{h+=`<td style="font-size:14px;font-weight:600;color:var(--primary)">${BASE_SCORE}</td>`;});
     h+=`</tr>`;
-    h+=`<tr class="total-row" style="background:#f8f9fc"><td colspan="3" style="text-align:right;padding-right:12px">鍔犲噺鍒嗗悎璁?/td>`;
+    h+=`<tr class="total-row" style="background:#f8f9fc"><td colspan="3" style="text-align:right;padding-right:12px">加减分合计</td>`;
     TEAMS.forEach((_,ti)=>{
       const raw=ALL_ITEMS.reduce((s,it)=>{const v=md[`${ti}_${it.id}`]; return s+(v?v.score:0);},0);
       const rawF=parseFloat(raw.toFixed(1));
       h+=`<td><span id="adj_${ti}" style="font-size:14px;font-weight:600;color:${rawF>=0?'var(--success)':'var(--danger)'}">${rawF>=0?'+':''}${rawF}</span></td>`;
     });
     h+=`</tr>`;
-    h+=`<tr class="total-row"><td colspan="3" style="text-align:right;padding-right:12px">鏈€缁堝緱鍒?/td>`;
+    h+=`<tr class="total-row"><td colspan="3" style="text-align:right;padding-right:12px">最终得分</td>`;
     TEAMS.forEach((_,ti)=>{
       const total=calcTeamTotal(ti,md);
       const totalF=parseFloat(total.toFixed(1));
       h+=`<td><span id="tot_${ti}" style="font-size:16px;font-weight:700;color:${totalF>=0?'var(--success)':'var(--danger)'}">${totalF}</span></td>`;
     });
-    h+=`</tr><tr class="total-row"><td colspan="3" style="text-align:right;padding-right:12px">鎺?鍚?/td>`;
+    h+=`</tr><tr class="total-row"><td colspan="3" style="text-align:right;padding-right:12px">排 名</td>`;
     const ranks=calcRanks(md);
     TEAMS.forEach((_,ti)=>{h+=`<td><span class="rank-badge rank-${ranks[ti]}">${ranks[ti]}</span></td>`;});
     h+=`</tr></tbody></table></div></div>`;
@@ -751,7 +754,7 @@ async function loadScoring(){
     document.getElementById('scoringArea').innerHTML=h;
     updateInfo();
   } catch(e){
-    document.getElementById('scoringArea').innerHTML=`<div class="empty-state"><div class="icon">鈿狅笍</div><p>鍔犺浇澶辫触锛?{e.message}<br><small>璇锋鏌ョ綉缁滆繛鎺ュ悗閲嶈瘯</small></p></div>`;
+    document.getElementById('scoringArea').innerHTML=`<div class="empty-state"><div class="icon">⚠️</div><p>加载失败：${e.message}<br><small>请检查网络连接后重试</small></p></div>`;
   }
 }
 
@@ -774,9 +777,9 @@ async function saveScores(){
   const y=+document.getElementById('sYear').value;
   const m=+document.getElementById('sMonth').value;
   const ym = k(y,m);
-  if(!_cache[ym]){ showToast('鈿狅笍 璇峰厛鍔犺浇璇勫垎琛?); return; }
+  if(!_cache[ym]){ showToast('⚠️ 请先加载评分表'); return; }
 
-  // 浠嶥OM鍚屾鏈€鏂板€煎埌cache
+  // 从DOM同步最新值到cache
   ALL_ITEMS.forEach(it => {
     TEAMS.forEach((_,ti)=>{
       const itemKey=`${ti}_${it.id}`;
@@ -798,16 +801,16 @@ async function saveScores(){
 
   const ok = await syncMonth(y,m);
   if(ok){
-    showToast(`鉁?${y}骞?{m}鏈堣瘎鍒嗗凡鍚屾鑷充簯绔痐);
+    showToast(`✅ ${y}年${m}月评分已同步至云端`);
   } else {
-    showToast(`鈿狅笍 浜戠鍚屾澶辫触锛屾暟鎹殏瀛樻湰鍦扮紦瀛榒);
+    showToast(`⚠️ 云端同步失败，数据暂存本地缓存`);
   }
 }
 
 async function clearMonth(){
   const y=+document.getElementById('sYear').value;
   const m=+document.getElementById('sMonth').value;
-  if(!confirm(`纭畾娓呯┖${y}骞?{m}鏈堟墍鏈夎瘎鍒嗘暟鎹紵姝ゆ搷浣滀笉鍙挙閿€锛乣)) return;
+  if(!confirm(`确定清空${y}年${m}月所有评分数据？此操作不可撤销！`)) return;
   
   try {
     setSync('syncing');
@@ -819,17 +822,18 @@ async function clearMonth(){
     }));
     setSync('online');
     loadScoring();
-    showToast(`馃棏锔?${y}骞?{m}鏈堟暟鎹凡娓呯┖锛堜簯绔悓姝ワ級`);
+    showToast(`🗑️ ${y}年${m}月数据已清空（云端同步）`);
   } catch(e){
     setSync('offline');
-    showToast('鈿狅笍 娓呯┖澶辫触锛? + e.message);
+    showToast('⚠️ 清空失败：' + e.message);
   }
 }
 
 // ===== MONTHLY DETAIL =====
 async function loadDetail(){
   const y=+document.getElementById('dYear').value;
-  // 棰勫姞杞藉叏骞存暟鎹?  for(let m=1;m<=12;m++) await ensureMonth(y,m).catch(()=>{});
+  // 预加载全年数据
+  for(let m=1;m<=12;m++) await ensureMonth(y,m).catch(()=>{});
 
   let h=`<div class="stats-row">`;
   let latestM=0, latestData=null;
@@ -838,10 +842,10 @@ async function loadDetail(){
     const ts=TEAMS.map((t,ti)=>({t,s:calcTeamTotal(ti,latestData)}));
     ts.sort((a,b)=>b.s-a.s);
     ts.forEach(item=>{
-      h+=`<div class="stat-card"><div class="stat-label">${item.t}</div><div class="stat-value">${item.s}</div><div class="stat-sub">${y}骞?{latestM}鏈?/div></div>`;
+      h+=`<div class="stat-card"><div class="stat-label">${item.t}</div><div class="stat-value">${item.s}</div><div class="stat-sub">${y}年${latestM}月</div></div>`;
     });
   } else {
-    h+=`<div class="stat-card" style="grid-column:span 4"><div class="stat-label">${y}骞存殏鏃犳暟鎹?/div></div>`;
+    h+=`<div class="stat-card" style="grid-column:span 4"><div class="stat-label">${y}年暂无数据</div></div>`;
   }
   h+=`</div>`;
 
@@ -853,8 +857,8 @@ async function loadDetail(){
 
     h+=`<div class="month-card">`;
     h+=`<div class="month-card-header" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">`;
-    h+=`<h3>${m}鏈?${hasData?'':(histTotal?'<span style="opacity:.7;font-weight:400;font-size:11px">锛堜粎鏈夋眹鎬绘暟鎹級</span>':'<span style="opacity:.5;font-weight:400;font-size:11px">锛堟湭褰曞叆锛?/span>')}</h3>`;
-    h+=`<span>鈻?/span></div>`;
+    h+=`<h3>${m}月 ${hasData?'':(histTotal?'<span style="opacity:.7;font-weight:400;font-size:11px">（仅有汇总数据）</span>':'<span style="opacity:.5;font-weight:400;font-size:11px">（未录入）</span>')}</h3>`;
+    h+=`<span>▼</span></div>`;
     h+=`<div class="month-card-body">`;
 
     if(hasData){
@@ -867,9 +871,9 @@ async function loadDetail(){
         return {team:t,catScores,total};
       });
 
-      h+=`<table class="summary-table"><thead><tr><th>鍒嗛槦</th>`;
+      h+=`<table class="summary-table"><thead><tr><th>分队</th>`;
       CATS.forEach(c=>{h+=`<th>${c.name}</th>`;});
-      h+=`<th>鍔犲噺鍒嗗悎璁?/th><th>鏈€缁堝緱鍒?/th></tr></thead><tbody>`;
+      h+=`<th>加减分合计</th><th>最终得分</th></tr></thead><tbody>`;
 
       teamData.forEach(td=>{
         h+=`<tr><td class="team-name">${td.team}</td>`;
@@ -884,11 +888,11 @@ async function loadDetail(){
       });
       h+=`</tbody></table>`;
     } else if(histTotal){
-      h+=`<p style="font-size:12px;color:var(--text2)">鍘烢xcel姹囨€伙細`;
-      TEAMS.forEach((t,ti)=>{h+=`${t} <strong>${histTotal[ti]}</strong>鍒嗐€€`;});
+      h+=`<p style="font-size:12px;color:var(--text2)">原Excel汇总：`;
+      TEAMS.forEach((t,ti)=>{h+=`${t} <strong>${histTotal[ti]}</strong>分　`;});
       h+=`</p>`;
     } else {
-      h+=`<p style="font-size:12px;color:var(--text2)">鏆傛棤鏁版嵁</p>`;
+      h+=`<p style="font-size:12px;color:var(--text2)">暂无数据</p>`;
     }
     h+=`</div></div>`;
   }
@@ -900,7 +904,8 @@ async function loadDetail(){
 // ===== CUMULATIVE =====
 async function loadCumul(){
   const y=+document.getElementById('cYear').value;
-  // 棰勫姞杞藉叏骞存暟鎹?  for(let m=1;m<=12;m++) await ensureMonth(y,m).catch(()=>{});
+  // 预加载全年数据
+  for(let m=1;m<=12;m++) await ensureMonth(y,m).catch(()=>{});
 
   const cumData=TEAMS.map((t,ti)=>{
     const monthly=[]; let cum=0;
@@ -920,15 +925,15 @@ async function loadCumul(){
   const rankMap={};let rank=1;
   ranked.forEach((s,i)=>{if(i>0&&s.final<ranked[i-1].final)rank=i+1;rankMap[s.team]=rank;});
 
-  let h=`<div class="card"><div class="card-title">馃搱 ${y}骞?鍒嗛槦绱寰楀垎杩借釜</div>`;
-  h+=`<div style="overflow-x:auto"><table class="summary-table"><thead><tr><th>鏈堜唤</th>`;
-  TEAMS.forEach((t,ti)=>{h+=`<th class="${TEAM_TH[ti]}">${t}<br><span style="font-size:9px;font-weight:400;opacity:.85">褰撴湀寰楀垎 / 绱</span></th>`;});
+  let h=`<div class="card"><div class="card-title">📈 ${y}年 分队累计得分追踪</div>`;
+  h+=`<div style="overflow-x:auto"><table class="summary-table"><thead><tr><th>月份</th>`;
+  TEAMS.forEach((t,ti)=>{h+=`<th class="${TEAM_TH[ti]}">${t}<br><span style="font-size:9px;font-weight:400;opacity:.85">当月得分 / 累计</span></th>`;});
   h+=`</tr></thead><tbody>`;
 
   cumData[0].monthly.forEach((_,mi)=>{
     const key=k(y,mi+1);
     const hasData=!!_cache[key]||!!HIST_TOTALS[key];
-    h+=`<tr><td style="font-weight:600">${mi+1}鏈?{hasData?'':'<span style="color:var(--text2);font-size:10px"> 鈥?/span>'}</td>`;
+    h+=`<tr><td style="font-weight:600">${mi+1}月${hasData?'':'<span style="color:var(--text2);font-size:10px"> —</span>'}</td>`;
     cumData.forEach(td=>{
       const ms=parseFloat(td.monthly[mi].s.toFixed(1));
       const cumF=parseFloat(td.monthly[mi].cum.toFixed(1));
@@ -937,25 +942,25 @@ async function loadCumul(){
       if(ms!==0){
         h+=`<div style="font-weight:600;color:${msColor}">${ms>0?'+':''}${ms}</div>`;
       } else {
-        h+=`<div style="color:var(--text2)">鈥?/div>`;
+        h+=`<div style="color:var(--text2)">—</div>`;
       }
-      h+=`<div style="font-size:10px;color:var(--primary);font-weight:500">绱 ${cumF>0?'+':''}${cumF}</div>`;
+      h+=`<div style="font-size:10px;color:var(--primary);font-weight:500">累计 ${cumF>0?'+':''}${cumF}</div>`;
       h+=`</td>`;
     });
     h+=`</tr>`;
   });
 
-  h+=`<tr style="background:#f0f3f9;font-weight:700"><td>骞村害绱鎬诲垎</td>`;
+  h+=`<tr style="background:#f0f3f9;font-weight:700"><td>年度累计总分</td>`;
   cumData.forEach(td=>{const f=parseFloat(td.final.toFixed(1));h+=`<td style="font-size:15px;color:var(--primary)">${f>0?'+':''}${f}</td>`;});
-  h+=`</tr><tr style="background:#f0f3f9;font-weight:700"><td>鎺掑悕</td>`;
+  h+=`</tr><tr style="background:#f0f3f9;font-weight:700"><td>排名</td>`;
   TEAMS.forEach((t,ti)=>{h+=`<td><span class="rank-badge rank-${rankMap[t]}">${rankMap[t]}</span></td>`;});
   h+=`</tr></tbody></table></div></div>`;
 
-  h+=`<div class="card"><div class="card-title">馃搳 鏈堝害瓒嬪娍锛堥€愭湀寰楀垎锛?/div>`;
+  h+=`<div class="card"><div class="card-title">📊 月度趋势（逐月得分）</div>`;
   const colors=['#c4161c','#1a3a6b','#d4a843','#27ae60'];
   cumData.forEach((td,ti)=>{
     const f=parseFloat(td.final.toFixed(1));
-    h+=`<div style="margin-bottom:14px"><div style="font-weight:600;margin-bottom:4px;color:${colors[ti]}">${td.team}锛?{y}骞寸疮璁?${f>0?'+':''}${f} 鍒?路 鎺掑悕绗?${rankMap[td.team]} 锛?/div>`;
+    h+=`<div style="margin-bottom:14px"><div style="font-weight:600;margin-bottom:4px;color:${colors[ti]}">${td.team}（${y}年累计 ${f>0?'+':''}${f} 分 · 排名第 ${rankMap[td.team]} ）</div>`;
     h+=`<div style="display:flex;gap:3px">`;
     td.monthly.forEach((ms,mi)=>{
       const maxBar=100;
@@ -964,8 +969,8 @@ async function loadCumul(){
       const op=s!==0?1:.15;
       const bg=s>=0?colors[ti]:'var(--danger)';
       h+=`<div style="flex:1;text-align:center"><div style="height:${maxBar}px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">`;
-      h+=`<div style="width:100%;max-width:32px;height:${Math.max(barH,2)}px;background:${bg};opacity:${op};border-radius:3px 3px 0 0" title="${mi+1}鏈? ${s>0?'+':''}${s}鍒?></div>`;
-      h+=`</div><div style="font-size:9px;color:var(--text2);margin-top:2px">${mi+1}鏈?/div><div style="font-size:9px;font-weight:600;color:${s>0?colors[ti]:(s<0?'var(--danger)':'var(--text2)')}">${s!==0?(s>0?'+':'')+s:'鈥?}</div></div>`;
+      h+=`<div style="width:100%;max-width:32px;height:${Math.max(barH,2)}px;background:${bg};opacity:${op};border-radius:3px 3px 0 0" title="${mi+1}月: ${s>0?'+':''}${s}分"></div>`;
+      h+=`</div><div style="font-size:9px;color:var(--text2);margin-top:2px">${mi+1}月</div><div style="font-size:9px;font-weight:600;color:${s>0?colors[ti]:(s<0?'var(--danger)':'var(--text2)')}">${s!==0?(s>0?'+':'')+s:'—'}</div></div>`;
     });
     h+=`</div></div>`;
   });
@@ -998,8 +1003,8 @@ async function loadAnnual(){
   sorted.forEach((s,i)=>{if(i>0&&s.total<sorted[i-1].total)rank=i+1;rankMap[s.team]=rank;});
 
   let h=`<div class="card" style="text-align:center;padding:24px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;border-radius:10px">`;
-  h+=`<div style="font-size:22px;font-weight:700;margin-bottom:4px">馃弳 ${y}骞村害 鍒嗛槦鑰冩牳鎺掑悕</div>`;
-  h+=`<div style="font-size:13px;opacity:.8">鍗楄埅鍚夋灄鍒嗗叕鍙稿鑸遍儴 路 涔樺姟涓€鍒嗛儴 路 浜戠増</div></div>`;
+  h+=`<div style="font-size:22px;font-weight:700;margin-bottom:4px">🏆 ${y}年度 分队考核排名</div>`;
+  h+=`<div style="font-size:13px;opacity:.8">南航吉林分公司客舱部 · 乘务一分部 · 云版</div></div>`;
 
   h+=`<div class="year-grid">`;
   sorted.forEach(td=>{
@@ -1007,26 +1012,26 @@ async function loadAnnual(){
     const colors=['#c4161c','#1a3a6b','#d4a843','#27ae60'];
     h+=`<div class="year-card ${TEAM_YC[ti]}"><div style="display:flex;justify-content:space-between;align-items:center">`;
     h+=`<h3 style="color:${colors[ti]}">${td.team}</h3><span class="rank-badge rank-${rankMap[td.team]}" style="width:34px;height:34px;font-size:15px">${rankMap[td.team]}</span></div>`;
-    h+=`<div style="font-size:28px;font-weight:700;color:${colors[ti]};margin:6px 0">${(()=>{const f=parseFloat(td.total.toFixed(1));return (f>0?'+':'')+f;})()}<span style="font-size:13px;font-weight:400;color:var(--text2)"> 鍒?/span></div>`;
-    h+=`<div style="font-size:12px;color:var(--text2)">宸插綍鍏?${td.months} 涓湀 路 鏈堝潎 ${td.avg} 鍒?/div>`;
+    h+=`<div style="font-size:28px;font-weight:700;color:${colors[ti]};margin:6px 0">${(()=>{const f=parseFloat(td.total.toFixed(1));return (f>0?'+':'')+f;})()}<span style="font-size:13px;font-weight:400;color:var(--text2)"> 分</span></div>`;
+    h+=`<div style="font-size:12px;color:var(--text2)">已录入 ${td.months} 个月 · 月均 ${td.avg} 分</div>`;
     h+=`<div style="display:flex;gap:3px;margin-top:10px">`;
     td.ms.forEach((s,mi)=>{
       const barH=Math.min(Math.abs(s)*1,60);
       const op=s!==0?1:.15;
       const bg=s>=0?colors[ti]:'var(--danger)';
-      h+=`<div style="flex:1;height:${Math.max(barH,4)}px;background:${bg};opacity:${op};border-radius:2px 2px 0 0" title="${mi+1}鏈? ${s}鍒?></div>`;
+      h+=`<div style="flex:1;height:${Math.max(barH,4)}px;background:${bg};opacity:${op};border-radius:2px 2px 0 0" title="${mi+1}月: ${s}分"></div>`;
     });
     h+=`</div></div>`;
   });
   h+=`</div>`;
 
-  h+=`<div class="card"><div class="card-title">馃搳 骞村害寰楀垎鏄庣粏</div>`;
-  h+=`<div style="overflow-x:auto"><table class="summary-table"><thead><tr><th>鏈堜唤</th>`;
+  h+=`<div class="card"><div class="card-title">📊 年度得分明细</div>`;
+  h+=`<div style="overflow-x:auto"><table class="summary-table"><thead><tr><th>月份</th>`;
   TEAMS.forEach((t,ti)=>{h+=`<th class="${TEAM_TH[ti]}">${t}</th>`;});
-  h+=`<th>褰撴湀鏈€浼?/th></tr></thead><tbody>`;
+  h+=`<th>当月最优</th></tr></thead><tbody>`;
 
   for(let m=1;m<=12;m++){
-    h+=`<tr><td style="font-weight:600">${m}鏈?/td>`;
+    h+=`<tr><td style="font-weight:600">${m}月</td>`;
     let bestT='',bestS=-Infinity;
     annData.forEach(td=>{
       const s=td.ms[m-1];
@@ -1036,17 +1041,17 @@ async function loadAnnual(){
     h+=`<td style="color:var(--accent);font-weight:600">${bestS>-Infinity&&bestS!==0?bestT:'-'}</td></tr>`;
   }
 
-  h+=`<tr style="background:#f0f3f9;font-weight:700"><td>骞村害绱</td>`;
+  h+=`<tr style="background:#f0f3f9;font-weight:700"><td>年度累计</td>`;
   annData.forEach(td=>{h+=`<td style="font-size:15px;color:var(--primary)">${(()=>{const f=parseFloat(td.total.toFixed(1));return (f>0?'+':'')+f;})()}</td>`;});
   h+=`<td>-</td></tr>`;
-  h+=`<tr style="background:#f0f3f9;font-weight:700"><td>鏈堝潎寰楀垎</td>`;
+  h+=`<tr style="background:#f0f3f9;font-weight:700"><td>月均得分</td>`;
   annData.forEach(td=>{h+=`<td style="font-weight:600">${td.avg}</td>`;});
   h+=`<td>-</td></tr>`;
-  h+=`<tr style="background:#f0f3f9;font-weight:700"><td>骞村害鎺掑悕</td>`;
+  h+=`<tr style="background:#f0f3f9;font-weight:700"><td>年度排名</td>`;
   TEAMS.forEach(t=>{h+=`<td><span class="rank-badge rank-${rankMap[t]}">${rankMap[t]}</span></td>`;});
   h+=`<td>-</td></tr></tbody></table></div></div>`;
 
-  h+=`<div class="card"><div class="card-title">馃弲 鏈堝害鍐犲啗缁熻</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">`;
+  h+=`<div class="card"><div class="card-title">🏅 月度冠军统计</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">`;
   const colors=['#c4161c','#1a3a6b','#d4a843','#27ae60'];
   TEAMS.forEach((t,ti)=>{
     let wins=0;
@@ -1057,7 +1062,7 @@ async function loadAnnual(){
     h+=`<div style="text-align:center;padding:14px;background:#fafbfc;border-radius:8px">`;
     h+=`<div style="font-weight:600;color:${colors[ti]};margin-bottom:4px">${t}</div>`;
     h+=`<div style="font-size:28px;font-weight:700;color:var(--gold)">${wins}</div>`;
-    h+=`<div style="font-size:11px;color:var(--text2)">娆℃湀搴﹀啝鍐?/div></div>`;
+    h+=`<div style="font-size:11px;color:var(--text2)">次月度冠军</div></div>`;
   });
   h+=`</div></div>`;
 
@@ -1071,10 +1076,10 @@ function exportMonth(){
   const m=+document.getElementById('sMonth').value;
   const key=k(y,m);
   const md=_cache[key];
-  if(!md){showToast('鈿狅笍 褰撴湀鏃犳暟鎹?);return;}
+  if(!md){showToast('⚠️ 当月无数据');return;}
   let csv='\uFEFF';
-  csv+=`${y}骞?{m}鏈?涔樺姟涓€鍒嗛儴鍒嗛槦鑰冩牳璇勫垎琛紙2026R5鐗埪疯捣濮嬪垎${BASE_SCORE}路浜戠増锛塡n\n`;
-  csv+=`鏉℃,璇勫垎瑙勫垯,${TEAMS.join(',')}\n`;
+  csv+=`${y}年${m}月 乘务一分部分队考核评分表（2026R5版·起始分${BASE_SCORE}·云版）\n\n`;
+  csv+=`条款,评分规则,${TEAMS.join(',')}\n`;
   CATS.forEach(cat=>{
     csv+=`${cat.name},,\n`;
     cat.items.forEach(it=>{
@@ -1086,23 +1091,23 @@ function exportMonth(){
       csv+=`\n`;
     });
   });
-  csv+=`\n璧峰鍒?,`;
+  csv+=`\n起始分,,`;
   TEAMS.forEach(()=>{csv+=`,${BASE_SCORE}`;});
-  csv+=`\n鍔犲噺鍒嗗悎璁?,`;
+  csv+=`\n加减分合计,,`;
   TEAMS.forEach((_,ti)=>{const raw=ALL_ITEMS.reduce((s,it)=>{const v=md[`${ti}_${it.id}`];return s+(v?v.score:0);},0);csv+=`,${raw}`;});
-  csv+=`\n鏈€缁堝緱鍒?,`;
+  csv+=`\n最终得分,,`;
   TEAMS.forEach((_,ti)=>{csv+=`,${calcTeamTotal(ti,md)}`;});
-  downloadCSV(csv,`${y}骞?{m}鏈堝垎闃熻€冩牳璇勫垎琛?csv`);
-  showToast('馃摛 宸插鍑?);
+  downloadCSV(csv,`${y}年${m}月分队考核评分表.csv`);
+  showToast('📤 已导出');
 }
 
 function exportCumul(){
   const y=+document.getElementById('cYear').value;
   let csv='\uFEFF';
-  csv+=`${y}骞村害 鍒嗛槦绱寰楀垎琛╘n\n鏈堜唤,${TEAMS.join(',')}\n`;
+  csv+=`${y}年度 分队累计得分表\n\n月份,${TEAMS.join(',')}\n`;
   for(let m=1;m<=12;m++){
     const key=k(y,m);const md=_cache[key];
-    csv+=`${m}鏈坄;
+    csv+=`${m}月`;
     TEAMS.forEach((_,ti)=>{
       let s=0;
       if(md)s=calcTeamTotal(ti,md);
@@ -1111,17 +1116,17 @@ function exportCumul(){
     });
     csv+=`\n`;
   }
-  downloadCSV(csv,`${y}骞村害绱寰楀垎琛?csv`);
-  showToast('馃摛 宸插鍑?);
+  downloadCSV(csv,`${y}年度累计得分表.csv`);
+  showToast('📤 已导出');
 }
 
 function exportAnnual(){
   const y=+document.getElementById('aYear').value;
   let csv='\uFEFF';
-  csv+=`${y}骞村害 鍒嗛槦鑰冩牳骞村害姹囨€籠n\n鏈堜唤,${TEAMS.join(',')},鏈堝害鏈€浼榎n`;
+  csv+=`${y}年度 分队考核年度汇总\n\n月份,${TEAMS.join(',')},月度最优\n`;
   for(let m=1;m<=12;m++){
     const key=k(y,m);const md=_cache[key];
-    csv+=`${m}鏈坄;let best='',bs=-Infinity;
+    csv+=`${m}月`;let best='',bs=-Infinity;
     TEAMS.forEach((t,ti)=>{
       let s=0;
       if(md)s=calcTeamTotal(ti,md);
@@ -1131,8 +1136,8 @@ function exportAnnual(){
     });
     csv+=`,${bs>-Infinity?best:''}\n`;
   }
-  downloadCSV(csv,`${y}骞村害鑰冩牳姹囨€?csv`);
-  showToast('馃摛 宸插鍑?);
+  downloadCSV(csv,`${y}年度考核汇总.csv`);
+  showToast('📤 已导出');
 }
 
 function downloadCSV(c,n){
@@ -1152,7 +1157,7 @@ function initYears(){
   const yrs=[]; for(let y=cy-2;y<=cy+1;y++) yrs.push(y);
   ['sYear','dYear','cYear','aYear'].forEach(id=>{
     const s=document.getElementById(id);
-    s.innerHTML=yrs.map(y=>`<option value="${y}"${y===cy?' selected':''}>${y}骞?/option>`).join('');
+    s.innerHTML=yrs.map(y=>`<option value="${y}"${y===cy?' selected':''}>${y}年</option>`).join('');
   });
   document.getElementById('sMonth').value=new Date().getMonth()+1;
 }
@@ -1174,7 +1179,7 @@ document.querySelectorAll('.nav-tab').forEach(tab=>{
 async function bootApp(){
   initYears();
   updateInfo();
-  // 灏濊瘯鎭㈠涓婃鐧诲綍
+  // 尝试恢复上次登录
   const saved = getStoredAuth();
   if(saved){
     authToken = saved;
@@ -1183,7 +1188,8 @@ async function bootApp(){
   loadCumul();
 }
 
-// 鑷姩妫€鏌ユ槸鍚︽湁缂撳瓨token锛屾湁灏辫烦杩囩櫥褰?(function autoLogin(){
+// 自动检查是否有缓存token，有就跳过登录
+(function autoLogin(){
   const saved = getStoredAuth();
   if(saved){
     authToken = saved;
